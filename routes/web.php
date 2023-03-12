@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\MessageCreated;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('layouts.admin');
+});
+
+Route::get('/send/messages', function () {
+    MessageCreated::dispatch("hai", 30);
 });
