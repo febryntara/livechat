@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\MessageCreated;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +21,8 @@ Route::get('/', function () {
 
 Route::get('/send/messages', function () {
     MessageCreated::dispatch("hai", 30);
+});
+
+Route::controller(UserController::class)->group(function () {
+    Route::get("/signup", "signup")->name('auth.signup')->middleware('guest');
 });
