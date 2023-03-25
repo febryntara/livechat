@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('layouts.admin');
-});
+})->name('dashboard')->middleware('auth');
 
 Route::get('/send/messages', function () {
     MessageCreated::dispatch("hai", 30);
@@ -25,4 +25,7 @@ Route::get('/send/messages', function () {
 
 Route::controller(UserController::class)->group(function () {
     Route::get("/signup", "signup")->name('auth.signup')->middleware('guest');
+    Route::post("/signup", "attemptSignin")->name('auth.attempt_signup')->middleware('guest');
+    Route::get("/signin", "signin")->name('auth.signin')->middleware('guest');
+    Route::get("/signout", "signout")->name('auth.signout')->middleware('auth');
 });

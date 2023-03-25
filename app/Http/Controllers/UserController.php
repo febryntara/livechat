@@ -17,7 +17,7 @@ class UserController extends Controller
             'title' => "Live Chat | Sign In",
         ];
 
-        return $data;
+        return view('pages.authentication.signin', $data);
     }
 
     public function signup()
@@ -26,27 +26,25 @@ class UserController extends Controller
             'title' => "Live Chat | Sign Up",
         ];
 
-        return view('pages.authentication.signin', $data);
+        return $data;
     }
 
     public function attemptSignin(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'username' => 'string|required|min:8|max:16',
+            'email' => 'string|required|email',
             'password' => 'required|string',
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->withInput()->withErrors($validator)->with('error', "Username atau Password Salah!");
+            return redirect()->back()->withInput()->withErrors($validator)->with('error', "email atau Password Salah!");
         }
 
         $validated = $validator->validate();
-        if (Auth::attempt(['username' => $validated['username'], 'password' => $validated['password']])) {
-            // redirect ke halaman admin
+        if (Auth::attempt(['email' => $validated['email'], 'password' => $validated['password']])) {
+            return redirect()->route('dashboard')->with("success", "Sign In Berhasil<br>Selamat Datang " . auth()->user()->name);
         }
-
-        // kembali ke halaman login
-
+        return redirect()->back()->withInput()->with("error", "Sign In Gagal<br>Coba Lagi!");
     }
 
     public function attemptSignup(Request $request)
@@ -69,8 +67,10 @@ class UserController extends Controller
             'email' => $validated['email'],
         ])) {
             // redirect ke halaman login kasi alert berhasil buat akun
+            $this->attemptSignin($request);
         }
         // redirect ke halaman login kasi alert gagal buat akun
+        return redirect()->back()->withInput()->with("error", "Sign Up Gagal<br>Coba Lagi!");
     }
 
     public function signout()
@@ -78,6 +78,8 @@ class UserController extends Controller
         Session::flush();
         session()->invalidate();
         Auth::logout();
+
+        return redirect()->route('auth.signin');
         // redirect ke halaman login
     }
 }
