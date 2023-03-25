@@ -62,4 +62,14 @@ class StringComparison extends Model
         }
         return sqrt($sum);
     }
+
+    // cara pakai
+    private static function howtouse()
+    {
+        $str1 = "wayan abdi";
+        $str2 = "wayanabdi@gmail.com";
+
+        $similarity = StringComparison::calculate($str1, $str2);
+        echo "persamaan '$str1' dan '$str2': $similarity";
+    }
 }
