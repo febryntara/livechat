@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RequestService;
+use App\Models\StringComparison;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -81,5 +84,38 @@ class UserController extends Controller
 
         return redirect()->route('auth.signin');
         // redirect ke halaman login
+    }
+
+    public function enter()
+    {
+        $data = [
+            'title' => 'Live Chat | Minta Layanan',
+            'departemen' => [],
+
+        ];
+
+        return view('pages.authentication.enter', $data);
+    }
+
+    public function attemptEnter(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required|string',
+            'nim' => 'required|numeric',
+            'email' => 'required|email:dns',
+            'jurusan' => 'required|string'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput()->with('error', "Terjadi Kesalahan Pada Data yang Diberikan!");
+        }
+
+        $validated = $validator->validate();
+        $similarity = StringComparison::calculate($validated['nama'], $validated['email']);
+        if ($similarity > 0.6) {
+            Mail::to($validated['email'])->send(new RequestService($validated['to'], $validated['name'], $validated['nim'], $validated['jurusan']));
+            return redirect()->back()->with('success', "Layanan Berhasil Diminta!<br>Silahkan Cek Pesan Yang Kami Kirim Lewat Email Anda!");
+        }
+        return redirect()->back()->with('error', "Terjadi Ketidakcocokan Data Antara Email dan Nama Anda!<br>Gunakan Email Asli yang Berhubungan dengan Nama Anda!");
     }
 }
