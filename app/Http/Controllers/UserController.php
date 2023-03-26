@@ -111,9 +111,10 @@ class UserController extends Controller
         }
 
         $validated = $validator->validate();
+        // return (new RequestService($validated['email'], $validated['nama'], $validated['nim'], $validated['jurusan']))->render();
         $similarity = StringComparison::calculate($validated['nama'], $validated['email']);
         if ($similarity > 0.6) {
-            Mail::to($validated['email'])->send(new RequestService($validated['to'], $validated['name'], $validated['nim'], $validated['jurusan']));
+            Mail::to($validated['email'])->send(new RequestService($validated['nama'], $validated['nim'], $validated['jurusan']));
             return redirect()->back()->with('success', "Layanan Berhasil Diminta!<br>Silahkan Cek Pesan Yang Kami Kirim Lewat Email Anda!");
         }
         return redirect()->back()->with('error', "Terjadi Ketidakcocokan Data Antara Email dan Nama Anda!<br>Gunakan Email Asli yang Berhubungan dengan Nama Anda!");
