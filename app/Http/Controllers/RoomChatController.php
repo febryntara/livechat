@@ -15,9 +15,13 @@ class RoomChatController extends Controller
             if ($room->key == $request->key) {
                 $room->status = "ready";
                 $room->save();
-                return redirect()->route('room.open', ['room' => $room]);
+                return redirect()->route('room.open', ['room' => $room, "key" => $room->key]);
             }
             return redirect()->route('auth.attempt_enter')->with('error', "Key Tidak Cocok! Untuk Mengaktifkan Room, Pastikan Masuk Lewat Link Yang Tersedia di Email Anda!");
+        }
+
+        if (!$request->has('key') || $room->key != $request->key) {
+            return redirect()->route('auth.attempt_enter')->with('error', "Anda Tidak Memiliki Key, Pastikan Masuk Lewat Link Yang Tersedia di Email Anda!");
         }
 
         return $room;
