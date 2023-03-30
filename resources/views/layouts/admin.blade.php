@@ -23,9 +23,7 @@
         <div class="content">
             <div class="grid grid-cols-12 gap-6">
                 <div class="col-span-12 2xl:col-span-9">
-                    <div class="grid grid-cols-12 gap-6">
-                        @yield('body')
-                    </div>
+                    @yield('body')
                 </div>
                 <div class="col-span-12 2xl:col-span-3">
                     <div class="2xl:border-l -mb-10 pb-10">

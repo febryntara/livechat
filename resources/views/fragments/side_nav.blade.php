@@ -70,13 +70,13 @@
             </a>
             <ul class="">
                 <li>
-                    <a href="side-menu-light-categories.html" class="side-menu">
+                    <a href="{{ route('department.all') }}" class="side-menu">
                         <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
                         <div class="side-menu__title"> Semua Departemen </div>
                     </a>
                 </li>
                 <li>
-                    <a href="side-menu-light-add-product.html" class="side-menu">
+                    <a href="{{ route('department.create') }}" class="side-menu">
                         <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
                         <div class="side-menu__title"> Tambah Departemen </div>
                     </a>

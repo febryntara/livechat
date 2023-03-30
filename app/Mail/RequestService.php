@@ -48,6 +48,7 @@ class RequestService extends Mailable
             view: 'mail.request-service',
             with: [
                 'name' => $this->name,
+
                 'nim' => $this->nim,
                 'jurusan' => $this->jurusan,
                 'link' => $this->room->link . "?key=" . $this->room->key
