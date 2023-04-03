@@ -48,5 +48,6 @@
             console.log(event);
         });
     </script>
+    @yield('script')
     <!-- END: JS Assets-->
 @endsection
