@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\MessageCreated;
+use App\Http\Controllers\CSController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\RoomChatController;
 use App\Http\Controllers\UserController;
@@ -52,4 +53,14 @@ Route::controller(DepartmentController::class)->group(function () {
     Route::get('/department/{department:code}/ubah', 'update')->name('department.update')->middleware('auth');
     Route::patch('/department/{department:code}/ubah', 'patch')->name('department.patch')->middleware('auth');
     Route::delete('/department/{department:code}/hapus', 'delete')->name('department.delete')->middleware('auth');
+});
+
+Route::controller(CSController::class)->group(function () {
+    Route::get('/cs', 'index')->name('cs.all')->middleware('auth');
+    Route::get('/cs/tambah', 'create')->name('cs.create')->middleware('auth');
+    Route::post('/cs/tambah', 'store')->name('cs.store')->middleware('auth');
+    Route::get('/cs/{user:code}', 'detail')->name('cs.detail')->middleware('auth');
+    Route::get('/cs/{user:code}/ubah', 'update')->name('cs.update')->middleware('auth');
+    Route::patch('/cs/{user:code}/ubah', 'patch')->name('cs.patch')->middleware('auth');
+    Route::delete('/cs/{user:code}/hapus', 'delete')->name('cs.delete')->middleware('auth');
 });

@@ -85,6 +85,29 @@
         </li>
         <li>
             <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon"> <i data-lucide="shopping-bag"></i> </div>
+                <div class="side-menu__title">
+                    Data CS
+                    <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="{{ route('cs.all') }}" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
+                        <div class="side-menu__title"> Daftar CS </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('cs.create') }}" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
+                        <div class="side-menu__title"> Tambah CS </div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="side-menu">
                 <div class="side-menu__icon"> <i data-lucide="edit"></i> </div>
                 <div class="side-menu__title">
                     Data Mahasiswa
