@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -31,5 +32,16 @@ class Customer extends Model
         }
 
         return $customer;
+    }
+
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            $model->last_visit = Carbon::now()->timestamp;
+        });
+
+        static::updating(function ($model) {
+            $model->last_visit = Carbon::now()->timestamp;
+        });
     }
 }
