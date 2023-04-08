@@ -41,7 +41,7 @@ Route::controller(UserController::class)->group(function () {
 });
 
 Route::controller(RoomChatController::class)->group(function () {
-    Route::get('/room-{room:code}', "open")->name("room.open");
+    Route::get('/room-{room:code}', "open")->name("room.open")->middleware('customer');
 });
 
 Route::controller(DepartmentController::class)->group(function () {
