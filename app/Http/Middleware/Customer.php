@@ -26,7 +26,7 @@ class Customer
                 $room->save();
                 $this->redirect_true('room.open', null, [$room]);
             }
-            return $this->redirect_false('auth.enter', "Key Tidak Cocok! Untuk Mengaktifkan Room, Pastikan Masuk Lewat Link Yang Tersedia di Email Anda!");
+            return $this->redirect_false('auth.attempt_enter', "Key Tidak Cocok! Untuk Mengaktifkan Room, Pastikan Masuk Lewat Link Yang Tersedia di Email Anda!");
         }
 
         if (!$request->has('key') || $room->key != $request->key) {
@@ -50,7 +50,7 @@ class Customer
     {
         $room = strstr($url, "room-");
         $room = substr($room, 5);
-        $room = strstr($room, "?key", true);
+        // $room = strstr($room, "?key", true);
         return $room;
     }
 }

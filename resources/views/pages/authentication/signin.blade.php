@@ -68,7 +68,6 @@
             <!-- END: Login Form -->
         </div>
     </div>
-    @dump($errors)
 @endsection
 @section('base_script')
     <script src="{{ asset('dist/js/app.js') }}"></script>

@@ -16,6 +16,12 @@
 
 <body class="py-5 md:py-0">
     @yield('base_body')
+    @if (session('error'))
+        {{ session()->get('error') }}
+    @endif
+    @if (session('success'))
+        {{ session()->get('success') }}
+    @endif
     {{-- ================================================ --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
     @yield('base_script')
