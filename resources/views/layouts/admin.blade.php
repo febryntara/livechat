@@ -42,12 +42,6 @@
     <!-- BEGIN: JS Assets-->
     <script src="{{ asset('dist/js/app.js') }}"></script>
     <script src="{{ asset('build/assets/app-b09f75ac.js') }}"></script>
-
-    <script>
-        window.Echo.channel("messages.30").listen("MessageCreated", (event) => {
-            console.log(event);
-        });
-    </script>
     @yield('script')
     <!-- END: JS Assets-->
 @endsection

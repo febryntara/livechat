@@ -24,7 +24,7 @@ Route::get('/', function () {
 })->name('dashboard')->middleware('auth');
 
 Route::get('/send/messages', function () {
-    MessageCreated::dispatch("hai", 30);
+    MessageCreated::dispatch("hai", 4, 1, 2);
 });
 
 Route::get('/test-mail', function () {
