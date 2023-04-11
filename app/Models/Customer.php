@@ -37,11 +37,11 @@ class Customer extends Model
     protected static function booted()
     {
         static::creating(function ($model) {
-            $model->last_visit = Carbon::now()->timestamp;
+            $model->last_visit = Carbon::now()->toDateTimeString();
         });
 
         static::updating(function ($model) {
-            $model->last_visit = Carbon::now()->timestamp;
+            $model->last_visit = Carbon::now()->toDateTimeString();
         });
     }
 }

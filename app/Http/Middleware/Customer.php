@@ -24,9 +24,9 @@ class Customer
             if ($room->key == $request->key) {
                 $room->status = "ready";
                 $room->save();
-                $this->redirect_true('room.open', null, [$room]);
+                return $this->redirect_true('room.open', null, [$room]);
             }
-            return $this->redirect_false('auth.attempt_enter', "Key Tidak Cocok! Untuk Mengaktifkan Room, Pastikan Masuk Lewat Link Yang Tersedia di Email Anda!");
+            return redirect()->route('auth.attempt_enter', ['room' => $room, 'key' => $room->key])->with('error', 'Mencoba Terhubung Kembali');
         }
 
         if (!$request->has('key') || $room->key != $request->key) {
