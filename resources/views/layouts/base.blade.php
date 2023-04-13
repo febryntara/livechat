@@ -8,7 +8,7 @@
     <meta name="author" content="febryntara">
     @yield('meta')
     {{-- START:Dynamic Asset --}}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" /> --}}
     @yield('base_head')
     {{-- END:Dynamic Asset --}}
 </head>
@@ -23,7 +23,7 @@
         {{ session()->get('success') }}
     @endif
     {{-- ================================================ --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script> --}}
     @yield('base_script')
 </body>
 

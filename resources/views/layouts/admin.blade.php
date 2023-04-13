@@ -41,6 +41,7 @@
 @section('base_script')
     <!-- BEGIN: JS Assets-->
     <script src="{{ asset('dist/js/app.js') }}"></script>
+    {{-- <script src="{{ asset('dist/js/jquery-3.6.1.min.js') }}"></script> --}}
     <script src="{{ asset('build/assets/app-b09f75ac.js') }}"></script>
     @yield('script')
     <!-- END: JS Assets-->

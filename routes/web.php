@@ -23,6 +23,11 @@ Route::get('/', function () {
     return view('layouts.admin');
 })->name('dashboard')->middleware('auth');
 
+Route::get('test', function () {
+    $data = response()->json(view('fragments.chat_cs', ['message' => "anjay"])->render());
+    return $data;
+});
+
 Route::get('/send/messages', function () {
     MessageCreated::dispatch("hai", 4, 1, 2);
 });

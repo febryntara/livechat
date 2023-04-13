@@ -79,10 +79,10 @@
                         <div class="clear-both"></div>
                     </div>
                     <div class="pt-4 pb-10 sm:py-4 flex items-center border-t border-slate-200/60 dark:border-darkmode-400">
-                        <textarea
+                        <textarea id="chat-input"
                             class="chat__box__input form-control dark:bg-darkmode-600 h-16 resize-none border-transparent px-5 py-3 shadow-none focus:border-transparent focus:ring-0"
                             rows="1" placeholder="Type your message..."></textarea>
-                        <a href="javascript:;"
+                        <a href="javascript:;" onclick="sendMessage(2015323078, 2015)"
                             class="w-8 h-8 sm:w-10 sm:h-10 block bg-primary text-white rounded-full flex-none flex items-center justify-center mr-5">
                             <i data-lucide="send" class="w-4 h-4"></i> </a>
                     </div>
@@ -180,34 +180,146 @@
 
 @section('script')
     <script>
-        window.Echo.channel("messages.4").listen("MessageCreated", (event) => {
+        window.Echo.channel("messages.{{ $room->code }}").listen("MessageCreated", (event) => {
             console.log(event);
-            $('#chat-area').append(`<div class="chat__box__text-box flex items-end float-left mb-4">
-    <div class="w-10 h-10 hidden sm:block flex-none image-fit relative mr-5">
-        <img alt="Midone - HTML Admin Template" class="rounded-full" src="dist/images/profile-2.jpg">
+            let receiver = `<div class='chat__box__text-box flex items-end float-left mb-4'>
+    <div class='w-10 h-10 hidden sm:block flex-none image-fit relative mr-5'>
+        <img alt='Midone - HTML Admin Template' class='rounded-full' src='dist/images/profile-2.jpg'>
     </div>
-    <div class="bg-slate-100 dark:bg-darkmode-400 px-4 py-3 text-slate-500 rounded-r-md rounded-t-md">
-        <div class="mt-1 text-xs text-slate-500">2 mins ago</div>
+    <div class='bg-slate-100 dark:bg-darkmode-400 px-4 py-3 text-slate-500 rounded-r-md rounded-t-md'>${event.message}
+        <div class='mt-1 text-xs text-slate-500'>2 mins ago</div>
     </div>
-    <div class="hidden sm:block dropdown ml-3 my-auto">
-        <a href="javascript:;" class="dropdown-toggle w-4 h-4 text-slate-500" aria-expanded="false"
-            data-tw-toggle="dropdown"> <i data-lucide="more-vertical" class="w-4 h-4"></i> </a>
-        <div class="dropdown-menu w-40">
-            <ul class="dropdown-content">
+    <div class='hidden sm:block dropdown ml-3 my-auto'>
+        <a href='javascript:;' class='dropdown-toggle w-4 h-4 text-slate-500' aria-expanded='false'
+            data-tw-toggle='dropdown'> <i data-lucide='more-vertical' class='w-4 h-4'></i> </a>
+        <div class='dropdown-menu w-40'>
+            <ul class='dropdown-content'>
                 <li>
-                    <a href="" class="dropdown-item"> <i data-lucide="corner-up-left" class="w-4 h-4 mr-2"></i>
+                    <a href='' class='dropdown-item'> <i data-lucide='corner-up-left' class='w-4 h-4 mr-2'></i>
                         Reply </a>
                 </li>
                 <li>
-                    <a href="" class="dropdown-item"> <i data-lucide="trash" class="w-4 h-4 mr-2"></i> Delete
+                    <a href='' class='dropdown-item'> <i data-lucide='trash' class='w-4 h-4 mr-2'></i> Delete
                     </a>
                 </li>
             </ul>
         </div>
     </div>
 </div>
-<div class="clear-both"></div>
-`)
+`;
+
+            let sender = `<div class='chat__box__text-box flex items-end float-right mb-4'>
+    <div class='hidden sm:block dropdown mr-3 my-auto'>
+        <a href='javascript:;' class='dropdown-toggle w-4 h-4 text-slate-500' aria-expanded='false'
+            data-tw-toggle='dropdown'> <i data-lucide='more-vertical' class='w-4 h-4'></i> </a>
+        <div class='dropdown-menu w-40'>
+            <ul class='dropdown-content'>
+                <li>
+                    <a href='' class='dropdown-item'> <i data-lucide='corner-up-left' class='w-4 h-4 mr-2'></i>
+                        Reply </a>
+                </li>
+                <li>
+                    <a href='' class='dropdown-item'> <i data-lucide='trash' class='w-4 h-4 mr-2'></i> Delete
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class='bg-primary px-4 py-3 text-white rounded-l-md rounded-t-md'>
+        ${event.message}
+        <div class='mt-1 text-xs text-white text-opacity-80'>1 mins ago</div>
+    </div>
+    <div class='w-10 h-10 hidden sm:block flex-none image-fit relative ml-5'>
+        <img alt='Midone - HTML Admin Template' class='rounded-full' src='dist/images/profile-2.jpg'>
+    </div>
+</div>
+`;
+            ajaxWrapper('/api/get-message', 'post', event, function(result) {
+                    console.log(result);
+                    $('#chat-area').append(sender)
+                    $('#chat-area').append(`<div class="clear-both"></div>`);
+                },
+                function() {},
+                function(error) {
+                    console.log(error);
+                })
+
         });
+
+        // function sendMessage(sender, receiver) {
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: '/api/send-message',
+        //         data: {
+        //             message: $('#chat-input').val(),
+        //             sender: sender,
+        //             receiver: receiver,
+        //             room: '{{ $room->code }}'
+        //         },
+        //         beforeSend: function(data) {
+
+        //         },
+        //         success: function(result) {
+
+        //         }
+        //     })
+        // }
+
+        function sendMessage(senderId, receiverId) {
+            const xhr = new XMLHttpRequest();
+            const url = '/api/send-message';
+
+            const data = new FormData();
+            data.append('sender', senderId);
+            data.append('receiver', receiverId);
+            data.append('message', $('#chat-input').val());
+            data.append('room_code', '{{ $room->code }}');
+
+            xhr.open('POST', url, true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    console.log(response.message);
+                } else {
+                    console.log('An error occurred');
+                }
+            };
+            xhr.send(data);
+        }
+
+        function ajaxWrapper(url, method, data, successCallback, beforeSendCallback, errorCallback) {
+            // Inisialisasi objek XMLHttpRequest
+            var xhr = new XMLHttpRequest();
+
+            // Atur callback untuk menerima respon dari server
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        successCallback(xhr.responseText);
+                    } else {
+                        errorCallback(xhr.statusText);
+                    }
+                }
+            };
+
+            // Buat request dengan method yang ditentukan
+            xhr.open(method, url, true);
+
+            // Set header untuk request
+            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+            // Jalankan fungsi beforeSendCallback
+            if (beforeSendCallback) {
+                xhr.beforeSend = beforeSendCallback;
+            }
+
+            // Kirim data dengan method POST
+            if (method.toLowerCase() === 'post') {
+                xhr.send(JSON.stringify(data));
+            } else {
+                xhr.send();
+            }
+        }
     </script>
 @endsection

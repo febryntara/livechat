@@ -20,5 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::controller(ChatController::class)->group(function () {
-    // Route::get('/send', )
+    Route::post('/send-message', 'sendMessage');
+    Route::post('/get-message', 'getMessage');
 });
