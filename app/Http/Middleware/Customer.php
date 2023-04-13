@@ -18,7 +18,7 @@ class Customer
     {
         $room = RoomChat::where('code', $this->getRoomIdFromUrl($request->url()))->first();
         if (is_null($room)) {
-            return $this->redirect_false('auth.enter', "Key Tidak Cocok! Untuk Mengaktifkan Room, Pastikan Masuk Lewat Link Yang Tersedia di Email Anda!");
+            return $this->redirect_false("Key Tidak Cocok! Untuk Mengaktifkan Room, Pastikan Masuk Lewat Link Yang Tersedia di Email Anda!");
         }
         if ($room->status == "unregistred") {
             if ($room->key == $request->key) {
@@ -26,11 +26,11 @@ class Customer
                 $room->save();
                 return $this->redirect_true('room.open', null, [$room]);
             }
-            return redirect()->route('auth.attempt_enter', ['room' => $room, 'key' => $room->key])->with('error', 'Mencoba Terhubung Kembali');
+            return redirect()->route('room.open', ['room' => $room, 'key' => $room->key])->with('error', 'Mencoba Terhubung Kembali');
         }
 
         if (!$request->has('key') || $room->key != $request->key) {
-            return $this->redirect_false('auth.enter', "Anda Tidak Memiliki Key, Pastikan Masuk Lewat Link Yang Tersedia di Email Anda!");
+            return $this->redirect_false("Anda Tidak Memiliki Key, Pastikan Masuk Lewat Link Yang Tersedia di Email Anda!");
         }
 
         return $next($request);
@@ -41,9 +41,9 @@ class Customer
         return redirect()->route($route, ['room' => $extends[0], "key" => $extends[0]->key]);
     }
 
-    private function redirect_false($route, $message)
+    private function redirect_false($message)
     {
-        return redirect()->route($route)->with('error', $message);
+        return redirect()->back()->with('error', $message);
     }
 
     private function getRoomIdFromUrl($url)

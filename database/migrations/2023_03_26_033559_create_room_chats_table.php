@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("code");
             $table->string("key");
-            $table->string("name");
+            $table->string("customer_code")->unique();
             $table->string("link");
             $table->enum("status", ["ready", "active", "ended", "unregistred"]);
             $table->timestamps();

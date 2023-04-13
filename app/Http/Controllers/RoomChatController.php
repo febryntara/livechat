@@ -14,6 +14,7 @@ class RoomChatController extends Controller
         $data = [
             'title' => 'Chat Room',
             'room' => $room,
+            'customer' => $room->customer,
             'departments' => Department::latest()->get()
         ];
         return view('pages.chat.index', $data);

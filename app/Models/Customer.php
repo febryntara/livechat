@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Customer extends Model
 {
@@ -34,10 +35,14 @@ class Customer extends Model
         return $customer;
     }
 
+    // relations
+    // events
+
     protected static function booted()
     {
         static::creating(function ($model) {
             $model->last_visit = Carbon::now()->toDateTimeString();
+            $model->code = Str::random(6);
         });
 
         static::updating(function ($model) {

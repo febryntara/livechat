@@ -33,7 +33,7 @@ Route::get('/send/messages', function () {
 });
 
 Route::get('/test-mail', function () {
-    return (new RequestService("Bagus Febryntara", "2015323078", "Teknik Elektro"))->render();
+    // return (new RequestService("Bagus Febryntara", "2015323078", "Teknik Elektro"))->render();
 });
 
 Route::controller(UserController::class)->group(function () {

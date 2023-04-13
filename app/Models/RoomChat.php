@@ -10,7 +10,12 @@ use Illuminate\Support\Str;
 class RoomChat extends Model
 {
     use HasFactory;
-    protected $fillable = ["code", "key", "name", "status", "link"];
+    protected $fillable = ["code", "key", "customer_code", "status", "link"];
+
+    public function customer()
+    {
+        return $this->hasOne(Customer::class, 'code', 'customer_code');
+    }
 
     public static function boot()
     {

@@ -82,7 +82,7 @@
                         <textarea id="chat-input"
                             class="chat__box__input form-control dark:bg-darkmode-600 h-16 resize-none border-transparent px-5 py-3 shadow-none focus:border-transparent focus:ring-0"
                             rows="1" placeholder="Type your message..."></textarea>
-                        <a href="javascript:;" onclick="sendMessage(2015323078, 2015)"
+                        <a href="javascript:;" onclick="sendMessage('{{ $customer->code }}', 2015)"
                             class="w-8 h-8 sm:w-10 sm:h-10 block bg-primary text-white rounded-full flex-none flex items-center justify-center mr-5">
                             <i data-lucide="send" class="w-4 h-4"></i> </a>
                     </div>
@@ -95,7 +95,7 @@
                             <img alt="Midone - HTML Admin Template" src="dist/images/profile-2.jpg">
                         </div>
                         <div class="mt-3">
-                            <div class="font-medium">Hey, {{ $room->name }}</div>
+                            <div class="font-medium">Hey, {{ $customer->name }}</div>
                             <div class="text-slate-500 mt-1">Silahkan Pilih Departemen Untuk Memulai Percakapan.</div>
                         </div>
                     </div>

@@ -115,8 +115,8 @@ class UserController extends Controller
         // return (new RequestService($validated['email'], $validated['nama'], $validated['nim'], $validated['jurusan']))->render();
         $similarity = StringComparison::calculate($validated['nama'], $validated['email']);
         if ($similarity > 0.6) {
-            Customer::addOrUpdate($validated['nama'], $validated['email'], $validated['nim'], $validated['jurusan']);
-            Mail::to($validated['email'])->send(new RequestService($validated['nama'], $validated['nim'], $validated['jurusan']));
+            $customer = Customer::addOrUpdate($validated['nama'], $validated['email'], $validated['nim'], $validated['jurusan']);
+            Mail::to($validated['email'])->send(new RequestService($customer));
             return redirect()->back()->with('success', "Layanan Berhasil Diminta!<br>Silahkan Cek Pesan Yang Kami Kirim Lewat Email Anda!");
         }
         return redirect()->back()->with('error', "Terjadi Ketidakcocokan Data Antara Email dan Nama Anda!<br>Gunakan Email Asli yang Berhubungan dengan Nama Anda!");
