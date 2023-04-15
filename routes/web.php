@@ -6,6 +6,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\RoomChatController;
 use App\Http\Controllers\UserController;
 use App\Mail\RequestService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,9 +24,8 @@ Route::get('/', function () {
     return view('layouts.admin');
 })->name('dashboard')->middleware('auth');
 
-Route::get('test', function () {
-    $data = response()->json(view('fragments.chat_cs', ['message' => "anjay"])->render());
-    return $data;
+Route::get('test', function (Request $request) {
+    return $request->session()->get('code_identity');
 });
 
 Route::get('/send/messages', function () {
@@ -46,7 +46,8 @@ Route::controller(UserController::class)->group(function () {
 });
 
 Route::controller(RoomChatController::class)->group(function () {
-    Route::get('/room-{room:code}', "open")->name("room.open")->middleware('customer');
+    Route::get('/room-{room:code}', "openForC")->name("room.open")->middleware('customer');
+    Route::get('/chat/{room:code}', 'openForCS')->name("chat.open")->middleware('auth');
 });
 
 Route::controller(DepartmentController::class)->group(function () {

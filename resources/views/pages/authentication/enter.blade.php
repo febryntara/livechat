@@ -55,7 +55,16 @@
                             <option class="capitalize" value="teknik_mesin">Teknik Mesin</option>
                             <option class="capitalize" value="akutansi">Akutansi</option>
                             <option class="capitalize" value="pariwisata">Pariwisata</option>
-                            <option class="capitalize" value="Jurusan">Jurusan</option>
+                            <option class="capitalize" value="umum">Umum</option>
+                        </select>
+                        <select class="form-select form-select-lg mt-4 sm:mt-2 sm:mr-2" name="department"
+                            aria-label=".form-select-lg example">
+                            <option class="capitalize" value="">Pilih Department</option>
+                            @forelse ($departments as $item)
+                                <option class="capitalize" value="{{ $item->code }}">{{ $item->name }}</option>
+                            @empty
+                                <option class="capitalize" value="">Tidak Ada Department Yang Tersedia</option>
+                            @endforelse
                         </select>
                     </div>
                     <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">

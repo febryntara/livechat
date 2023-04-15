@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\RequestService;
 use App\Models\Customer;
+use App\Models\Department;
 use App\Models\StringComparison;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -91,7 +92,7 @@ class UserController extends Controller
     {
         $data = [
             'title' => 'Live Chat | Minta Layanan',
-            'departemen' => [],
+            'departments' => Department::get(),
 
         ];
 
@@ -104,7 +105,8 @@ class UserController extends Controller
             'nama' => 'required|string',
             'nim' => 'required|numeric',
             'email' => 'required|email:dns',
-            'jurusan' => 'required|string'
+            'jurusan' => 'required|string',
+            'department' => 'required|string'
         ]);
 
         if ($validator->fails()) {
@@ -116,7 +118,7 @@ class UserController extends Controller
         $similarity = StringComparison::calculate($validated['nama'], $validated['email']);
         if ($similarity > 0.6) {
             $customer = Customer::addOrUpdate($validated['nama'], $validated['email'], $validated['nim'], $validated['jurusan']);
-            Mail::to($validated['email'])->send(new RequestService($customer));
+            Mail::to($validated['email'])->send(new RequestService($customer, Department::where('code', $validated['department'])->get()->first()));
             return redirect()->back()->with('success', "Layanan Berhasil Diminta!<br>Silahkan Cek Pesan Yang Kami Kirim Lewat Email Anda!");
         }
         return redirect()->back()->with('error', "Terjadi Ketidakcocokan Data Antara Email dan Nama Anda!<br>Gunakan Email Asli yang Berhubungan dengan Nama Anda!");

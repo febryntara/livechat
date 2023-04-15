@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\Customer;
+use App\Models\Department;
 use App\Models\RoomChat;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -20,13 +21,14 @@ class RequestService extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(Customer $customer)
+    public function __construct(Customer $customer, Department $department)
     {
         $this->name = $customer->name;
         $this->nim = $customer->nim;
         $this->jurusan = $customer->jurusan;
         $this->room = RoomChat::create([
             "customer_code" => $customer->code,
+            'department_code' => $department->code
         ]);
     }
 
