@@ -35,9 +35,9 @@ class Customer
             return $next($request);
         }
 
-        if (!$request->has('key') || $room->key != $request->key) {
-            return $this->redirect_false("Anda Tidak Memiliki Key, Pastikan Masuk Lewat Link Yang Tersedia di Email Anda!");
-        }
+        // if (!$request->has('key') || $room->key != $request->key) {
+        return $this->redirect_false("Anda Tidak Memiliki Key, Pastikan Masuk Lewat Link Yang Tersedia di Email Anda!");
+        // }
     }
 
     private function redirect_true($route, $message, $extends)
