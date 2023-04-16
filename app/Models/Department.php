@@ -23,6 +23,12 @@ class Department extends Model
         ]);
     }
 
+    // relations
+    public function rooms()
+    {
+        return $this->hasMany(RoomChat::class, 'department_code', 'code');
+    }
+
     // events
     public static function boot()
     {

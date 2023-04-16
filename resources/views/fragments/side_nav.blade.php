@@ -29,7 +29,7 @@
             </a>
             <ul class="{{ active_checker('chat*', 'side-menu__sub-open', '') }}">
                 <li>
-                    <a href="side-menu-light-dashboard-overview-1.html" class="side-menu">
+                    <a href="{{ route('chat.stack') }}" class="side-menu">
                         <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
                         <div class="side-menu__title"> Permintaan Chat </div>
                     </a>

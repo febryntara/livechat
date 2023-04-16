@@ -47,6 +47,7 @@ Route::controller(UserController::class)->group(function () {
 
 Route::controller(RoomChatController::class)->group(function () {
     Route::get('/room-{room:code}', "openForC")->name("room.open")->middleware('customer');
+    Route::get('/chat/stack', 'chatStack')->name("chat.stack")->middleware('auth');
     Route::get('/chat/{room:code}', 'openForCS')->name("chat.open")->middleware('auth');
 });
 

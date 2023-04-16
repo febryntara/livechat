@@ -21,6 +21,11 @@ class RoomChatController extends Controller
     }
     public function openForCS(RoomChat $room, Request $request)
     {
+        if ($room->status == "ready") {
+            $room->status = 'active';
+            $room->save();
+        }
+
         $data = [
             'title' => 'Chat Room',
             'room' => $room,
@@ -28,5 +33,17 @@ class RoomChatController extends Controller
             'he' => $room->customer,
         ];
         return view('pages.chat.index', $data);
+    }
+
+    public function chatStack()
+    {
+        $department = Department::get()->first(); //sementara karena akun admin belum ada
+        $data = [
+            'title' => 'Chat Stack',
+            'department' => $department,
+            'rooms' => $department->rooms()->where('status', 'ready')->get()
+        ];
+
+        return view('pages.chat.chat_stack', $data);
     }
 }

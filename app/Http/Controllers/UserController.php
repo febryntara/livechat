@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\RoomAppear;
 use App\Mail\RequestService;
 use App\Models\Customer;
 use App\Models\Department;
@@ -118,7 +119,8 @@ class UserController extends Controller
         $similarity = StringComparison::calculate($validated['nama'], $validated['email']);
         if ($similarity > 0.6) {
             $customer = Customer::addOrUpdate($validated['nama'], $validated['email'], $validated['nim'], $validated['jurusan']);
-            Mail::to($validated['email'])->send(new RequestService($customer, Department::where('code', $validated['department'])->get()->first()));
+            $department = Department::where('code', $validated['department'])->get()->first();
+            Mail::to($validated['email'])->send(new RequestService($customer, $department));
             return redirect()->back()->with('success', "Layanan Berhasil Diminta!<br>Silahkan Cek Pesan Yang Kami Kirim Lewat Email Anda!");
         }
         return redirect()->back()->with('error', "Terjadi Ketidakcocokan Data Antara Email dan Nama Anda!<br>Gunakan Email Asli yang Berhubungan dengan Nama Anda!");

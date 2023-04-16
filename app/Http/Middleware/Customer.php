@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Events\RoomAppear;
 use App\Models\RoomChat;
 use Closure;
 use Illuminate\Http\Request;
@@ -20,20 +21,23 @@ class Customer
         if (is_null($room)) {
             return $this->redirect_false("Key Tidak Cocok! Untuk Mengaktifkan Room, Pastikan Masuk Lewat Link Yang Tersedia di Email Anda!");
         }
-        if ($room->status == "unregistred") {
-            if ($room->key == $request->key) {
+        if ($room->key == $request->key) {
+            if ($room->status == "unregistred") {
                 $room->status = "ready";
                 $room->save();
-                return $this->redirect_true('room.open', null, [$room]);
             }
-            return redirect()->route('room.open', ['room' => $room, 'key' => $room->key])->with('error', 'Mencoba Terhubung Kembali');
+            if ($room->status == "ready") {
+                RoomAppear::dispatch($room->department, $room, $room->customer);
+            }
+            if ($room->status == "ended") {
+                return redirect()->route('auth.enter')->with('error', 'Sesi Anda Telah Habis!<br>Silahkan Regristasi Ulang!');
+            }
+            return $next($request);
         }
 
         if (!$request->has('key') || $room->key != $request->key) {
             return $this->redirect_false("Anda Tidak Memiliki Key, Pastikan Masuk Lewat Link Yang Tersedia di Email Anda!");
         }
-
-        return $next($request);
     }
 
     private function redirect_true($route, $message, $extends)
