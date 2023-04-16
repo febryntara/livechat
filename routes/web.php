@@ -25,7 +25,7 @@ Route::get('/', function () {
 })->name('dashboard')->middleware('auth');
 
 Route::get('test', function (Request $request) {
-    return $request->session()->get('code_identity');
+    return $request->url();
 });
 
 Route::get('/send/messages', function () {

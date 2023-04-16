@@ -4,14 +4,19 @@
         <!-- BEGIN: Logo -->
         <a href="" class="logo -intro-x hidden md:flex xl:w-[180px] block">
             <img alt="Midone - HTML Admin Template" class="logo__image w-6" src="{{ asset('dist/images/logo.svg') }}">
-            <span class="logo__text text-white text-lg ml-3"> Enigma </span>
+            <span class="logo__text text-white text-lg ml-3"> PNB Live Chat </span>
         </a>
         <!-- END: Logo -->
         <!-- BEGIN: Breadcrumb -->
         <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
             <ol class="breadcrumb breadcrumb-light">
-                <li class="breadcrumb-item"><a href="#">Application</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                @forelse (parse_url_components(Request::url())['path_sliced'] as $item)
+                    <li class="breadcrumb-item {{ $loop->last ? 'active' : null }}">
+                        <span>{{ $item == '' ? 'Dashboard' : $item }}</span>
+                    </li>
+                @empty
+                    <li class="breadcrumb-item"><span>Where Am I?</span></li>
+                @endforelse
             </ol>
         </nav>
         <!-- END: Breadcrumb -->

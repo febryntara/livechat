@@ -29,3 +29,20 @@ if (!function_exists('active_checker')) {
         return Request::is($keyword) ? $if_true : $if_false;
     }
 }
+if (!function_exists('parse_url_components')) {
+    function parse_url_components($url)
+    {
+        $parsed_url = parse_url($url);
+
+        $components = [
+            'protocol' => isset($parsed_url['scheme']) ? $parsed_url['scheme'] : '',
+            'host' => isset($parsed_url['host']) ? $parsed_url['host'] : '',
+            'path' => isset($parsed_url['path']) ? $parsed_url['path'] : '',
+            'query' => isset($parsed_url['query']) ? $parsed_url['query'] : '',
+            'fragment' => isset($parsed_url['fragment']) ? $parsed_url['fragment'] : '',
+        ];
+        $components['path_sliced'] = explode("/", $components['path']);
+
+        return $components;
+    }
+}
