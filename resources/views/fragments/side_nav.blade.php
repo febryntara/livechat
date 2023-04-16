@@ -1,7 +1,7 @@
 <nav class="side-nav">
     <ul>
         <li>
-            <a href="javascript:;.html" class="side-menu side-menu--active">
+            <a href="javascript:;.html" class="side-menu {{ active_checker('/', 'side-menu--active', '') }}">
                 <div class="side-menu__icon"> <i data-lucide="home"></i> </div>
                 <div class="side-menu__title">
                     Dashboard
@@ -9,29 +9,12 @@
                     </div>
                 </div>
             </a>
-            <ul class="side-menu__sub-open">
+            <ul class="{{ active_checker('', 'side-menu__sub-open', '') }}">
                 <li>
-                    <a href="side-menu-light-dashboard-overview-1.html" class="side-menu">
+                    <a href="{{ route('dashboard') }}"
+                        class="side-menu {{ active_checker('/', 'side-menu--active', '') }}">
                         <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
-                        <div class="side-menu__title"> Overview 1 </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="side-menu-light-dashboard-overview-2.html" class="side-menu">
-                        <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
-                        <div class="side-menu__title"> Overview 2 </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="side-menu-light-dashboard-overview-3.html" class="side-menu">
-                        <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
-                        <div class="side-menu__title"> Overview 3 </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="index.html" class="side-menu side-menu--active">
-                        <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
-                        <div class="side-menu__title"> Overview 4 </div>
+                        <div class="side-menu__title"> Summary </div>
                     </a>
                 </li>
             </ul>
@@ -44,7 +27,7 @@
                     <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
                 </div>
             </a>
-            <ul class="">
+            <ul class="{{ active_checker('chat*', 'side-menu__sub-open', '') }}">
                 <li>
                     <a href="side-menu-light-dashboard-overview-1.html" class="side-menu">
                         <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
@@ -61,22 +44,24 @@
         </li>
         <li class="side-nav__devider my-6"></li>
         <li>
-            <a href="javascript:;" class="side-menu">
+            <a href="javascript:;" class="side-menu {{ active_checker('department', 'side-menu--active', '') }}">
                 <div class="side-menu__icon"> <i data-lucide="shopping-bag"></i> </div>
                 <div class="side-menu__title">
                     Data Departemen
                     <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
                 </div>
             </a>
-            <ul class="">
+            <ul class="{{ active_checker('department*', 'side-menu__sub-open', '') }}">
                 <li>
-                    <a href="{{ route('department.all') }}" class="side-menu">
+                    <a href="{{ route('department.all') }}"
+                        class="side-menu {{ active_checker('department', 'side-menu--active', '') }}">
                         <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
                         <div class="side-menu__title"> Semua Departemen </div>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('department.create') }}" class="side-menu">
+                    <a href="{{ route('department.create') }}"
+                        class="side-menu {{ active_checker('department/tambah', 'side-menu--active', '') }}">
                         <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
                         <div class="side-menu__title"> Tambah Departemen </div>
                     </a>
@@ -84,22 +69,24 @@
             </ul>
         </li>
         <li>
-            <a href="javascript:;" class="side-menu">
+            <a href="javascript:;" class="side-menu {{ active_checker('cs*', 'side-menu--active', '') }}">
                 <div class="side-menu__icon"> <i data-lucide="shopping-bag"></i> </div>
                 <div class="side-menu__title">
                     Data CS
                     <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
                 </div>
             </a>
-            <ul class="">
+            <ul class="{{ active_checker('cs*', 'side-menu__sub-open', '') }}">
                 <li>
-                    <a href="{{ route('cs.all') }}" class="side-menu">
+                    <a href="{{ route('cs.all') }}"
+                        class="side-menu {{ active_checker('cs', 'side-menu--active', '') }}">
                         <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
                         <div class="side-menu__title"> Daftar CS </div>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('cs.create') }}" class="side-menu">
+                    <a href="{{ route('cs.create') }}"
+                        class="side-menu {{ active_checker('cs/tambah', 'side-menu--active', '') }}">
                         <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
                         <div class="side-menu__title"> Tambah CS </div>
                     </a>

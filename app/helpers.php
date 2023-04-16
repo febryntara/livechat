@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Request;
+
 if (!function_exists('get_segment_url')) {
     function get_segment_url()
     {
@@ -18,5 +20,12 @@ if (!function_exists('asset')) {
     function asset($path)
     {
         return env('APP_URL') . $path;
+    }
+}
+
+if (!function_exists('active_checker')) {
+    function active_checker(String $keyword, String $if_true, String $if_false)
+    {
+        return Request::is($keyword) ? $if_true : $if_false;
     }
 }
