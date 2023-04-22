@@ -15,7 +15,7 @@ class RoomChatController extends Controller
             'title' => 'Chat Room',
             'room' => $room,
             'iam' => $room->customer,
-            'he' => Department::get()->first() //nanti ganti sama fix departemen yang udah dipilih lewat dialog
+            'he' => $room->department
         ];
         return view('pages.chat.index', $data);
     }
@@ -29,7 +29,7 @@ class RoomChatController extends Controller
         $data = [
             'title' => 'Chat Room',
             'room' => $room,
-            'iam' => Department::get()->first(), //nanti ganti sama departemen code di user
+            'iam' => $room->department,
             'he' => $room->customer,
         ];
         return view('pages.chat.index', $data);
@@ -37,7 +37,7 @@ class RoomChatController extends Controller
 
     public function chatStack()
     {
-        $department = Department::get()->first(); //sementara karena akun admin belum ada
+        $department = auth()->user()->department;
         $data = [
             'title' => 'Chat Stack',
             'department' => $department,
