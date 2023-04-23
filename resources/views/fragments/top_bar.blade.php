@@ -121,7 +121,7 @@
                     <a href="" class="flex items-center mt-2">
                         <div class="w-8 h-8 image-fit">
                             <img alt="Midone - HTML Admin Template" class="rounded-full"
-                                src="dist/images/preview-11.jpg">
+                                src="{{ asset('dist/images/preview-11.jpg') }}">
                         </div>
                         <div class="ml-3">Nike Tanjun</div>
                         <div class="ml-auto w-48 truncate text-slate-500 text-xs text-right">Sport &amp; Outdoor
@@ -142,7 +142,7 @@
                     <div class="cursor-pointer relative flex items-center ">
                         <div class="w-12 h-12 flex-none image-fit mr-1">
                             <img alt="Midone - HTML Admin Template" class="rounded-full"
-                                src="dist/images/profile-15.jpg">
+                                src="{{ asset('dist/images/profile-15.jpg') }}">
                             <div
                                 class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white">
                             </div>
@@ -160,7 +160,7 @@
                     <div class="cursor-pointer relative flex items-center mt-5">
                         <div class="w-12 h-12 flex-none image-fit mr-1">
                             <img alt="Midone - HTML Admin Template" class="rounded-full"
-                                src="dist/images/profile-7.jpg">
+                                src="{{ asset('dist/images/profile-7.jpg') }}">
                             <div
                                 class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white">
                             </div>
@@ -178,7 +178,7 @@
                     <div class="cursor-pointer relative flex items-center mt-5">
                         <div class="w-12 h-12 flex-none image-fit mr-1">
                             <img alt="Midone - HTML Admin Template" class="rounded-full"
-                                src="dist/images/profile-12.jpg">
+                                src="{{ asset('dist/images/profile-12.jpg') }}">
                             <div
                                 class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white">
                             </div>
@@ -196,7 +196,7 @@
                     <div class="cursor-pointer relative flex items-center mt-5">
                         <div class="w-12 h-12 flex-none image-fit mr-1">
                             <img alt="Midone - HTML Admin Template" class="rounded-full"
-                                src="dist/images/profile-1.jpg">
+                                src="{{ asset('dist/images/profile-1.jpg') }}">
                             <div
                                 class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white">
                             </div>
@@ -214,7 +214,7 @@
                     <div class="cursor-pointer relative flex items-center mt-5">
                         <div class="w-12 h-12 flex-none image-fit mr-1">
                             <img alt="Midone - HTML Admin Template" class="rounded-full"
-                                src="dist/images/profile-11.jpg">
+                                src="{{ asset('dist/images/profile-11.jpg') }}">
                             <div
                                 class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white">
                             </div>
@@ -237,7 +237,7 @@
         <div class="intro-x dropdown w-8 h-8">
             <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in scale-110"
                 role="button" aria-expanded="false" data-tw-toggle="dropdown">
-                <img alt="Midone - HTML Admin Template" src="dist/images/profile-5.jpg">
+                <img alt="Midone - HTML Admin Template" src="{{ asset('dist/images/profile-5.jpg') }}">
             </div>
             <div class="dropdown-menu w-56">
                 <ul
