@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Mail\RequestService;
 use App\Models\Message;
 use App\Models\MessageEncryption;
+use App\Models\StringComparison;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,13 +28,7 @@ Route::get('/', function () {
 })->name('dashboard')->middleware('auth');
 
 Route::get('test', function (Request $request) {
-    return Message::SecureCreate([
-        'message'    => "hai",
-        'room_code'     => 256132,
-        'customer_code' => 135689,
-        'cs_code'       => 898989,
-        'sender'        => 135689
-    ], "febryntara", "febryntaralordgy");
+    // return    $similarity = StringComparison::calculate("I Kadek Cahyani Pratiwi", "@gmwl.om");
 });
 
 Route::get('/send/messages', function () {
