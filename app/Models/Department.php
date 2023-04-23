@@ -36,6 +36,7 @@ class Department extends Model
 
         self::creating(function ($department) {
             $department->code = Str::random(6);
+            $department->token_16 = Str::random(16);
         });
     }
 }

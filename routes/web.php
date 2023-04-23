@@ -6,6 +6,8 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\RoomChatController;
 use App\Http\Controllers\UserController;
 use App\Mail\RequestService;
+use App\Models\Message;
+use App\Models\MessageEncryption;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +27,13 @@ Route::get('/', function () {
 })->name('dashboard')->middleware('auth');
 
 Route::get('test', function (Request $request) {
-    return $request->url();
+    return Message::SecureCreate([
+        'message'    => "hai",
+        'room_code'     => 256132,
+        'customer_code' => 135689,
+        'cs_code'       => 898989,
+        'sender'        => 135689
+    ], "febryntara", "febryntaralordgy");
 });
 
 Route::get('/send/messages', function () {

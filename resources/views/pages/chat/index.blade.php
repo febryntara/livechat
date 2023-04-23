@@ -21,12 +21,18 @@
                         </div>
                     </div>
                     <div class="overflow-y-scroll scrollbar-hidden px-5 pt-5 flex-1" id="chat-area">
+                        @forelse ($messages as $message)
+                            {!! $message->view !!}
+                            <div class="clear-both"></div>
+                        @empty
+                        @endforelse
                     </div>
                     <div class="pt-4 pb-10 sm:py-4 flex items-center border-t border-slate-200/60 dark:border-darkmode-400">
                         <textarea id="chat-input"
                             class="chat__box__input form-control dark:bg-darkmode-600 h-16 resize-none border-transparent px-5 py-3 shadow-none focus:border-transparent focus:ring-0"
                             rows="1" placeholder="Type your message..."></textarea>
-                        <a href="javascript:;" onclick="sendMessage('{{ $iam->code }}', '{{ $he->code }}')"
+                        <a href="javascript:;"
+                            onclick="sendMessage('{{ $room->customer->code }}', '{{ $room->department->code }}')"
                             class="w-8 h-8 sm:w-10 sm:h-10 bg-primary text-white rounded-full flex-none flex items-center justify-center mr-5">
                             <i data-lucide="send" class="w-4 h-4"></i> </a>
                     </div>
@@ -44,7 +50,7 @@
             ajaxWrapper('/api/get-message', 'post', event, function(result) {
                     let parsedResult = JSON.parse(result);
                     console.log(parsedResult);
-                    $('#chat-area').append(parsedResult.data.role_identity == "{{ $iam->code }}" ?
+                    $('#chat-area').append(parsedResult.data.sender == "{{ $iam->code }}" ?
                         parsedResult.view['sender'] : parsedResult.view['receiver'])
                     $('#chat-area').append(`<div class="clear-both"></div>`);
                 },
@@ -55,22 +61,23 @@
 
         });
 
-        function sendMessage(senderId, receiverId) {
+        function sendMessage(customer_code, cs_code) {
             const xhr = new XMLHttpRequest();
             const url = '/api/send-message';
 
             const data = new FormData();
-            data.append('sender', senderId);
-            data.append('receiver', receiverId);
+            data.append('customer_code', customer_code);
+            data.append('cs_code', cs_code);
             data.append('message', $('#chat-input').val());
             data.append('room_code', '{{ $room->code }}');
-            data.append('role_identity', "{{ $iam->code }}");
+            data.append('sender', "{{ $iam->code }}");
 
             xhr.open('POST', url, true);
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     const response = JSON.parse(xhr.responseText);
-                    console.log(response);
+                    console.log("Message Sent");
+                    $('#chat-input').val("")
                 } else {
                     console.log('An error occurred');
                 }

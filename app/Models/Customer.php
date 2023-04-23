@@ -43,6 +43,7 @@ class Customer extends Model
         static::creating(function ($model) {
             $model->last_visit = Carbon::now()->toDateTimeString();
             $model->code = Str::random(6);
+            $model->token_10 = Str::random(10);
         });
 
         static::updating(function ($model) {

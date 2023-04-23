@@ -9,7 +9,7 @@ class MessageEncryption extends Model
     private $key;
     private $iv;
 
-    public function __construct($key, $iv)
+    public function __construct(String $key, String $iv)
     {
         $this->key = $key;
         $this->iv = $iv;
@@ -30,8 +30,8 @@ class MessageEncryption extends Model
 
     public function howtouse()
     {
-        $key = 'my_secret_key';
-        $iv = 'my_secret_iv';
+        $key = 'my_secret_key'; //token_10 bit
+        $iv = 'my_secret_iv'; //token_16 bit
 
         $encryptor = new MessageEncryption($key, $iv);
 

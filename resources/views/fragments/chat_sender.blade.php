@@ -1,5 +1,5 @@
 <div class='chat__box__text-box flex items-end float-right mb-4'>
-    <div class='hidden sm:block dropdown mr-3 my-auto'>
+    {{-- <div class='hidden sm:block dropdown mr-3 my-auto'>
         <a href='javascript:;' class='dropdown-toggle w-4 h-4 text-slate-500' aria-expanded='false'
             data-tw-toggle='dropdown'> <i data-lucide='more-vertical' class='w-4 h-4'></i> </a>
         <div class='dropdown-menu w-40'>
@@ -14,7 +14,7 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </div> --}}
     <div class='bg-primary px-4 py-3 text-white rounded-l-md rounded-t-md'>
         {{ $message }}
         <div class='mt-1 text-xs text-white text-opacity-80'>1 mins ago</div>

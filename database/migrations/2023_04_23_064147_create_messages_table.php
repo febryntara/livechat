@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('departments', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('location');
-            $table->string('code')->unique();
-            $table->string('token_16')->unique();
-            $table->enum('status', ['availlable', 'unavaillable'])->default('availlable');
+            $table->text('chipertext');
+            $table->string('room_code');
+            $table->string('customer_code');
+            $table->string('cs_code');
+            $table->string('sender');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('departments');
+        Schema::dropIfExists('messages');
     }
 };

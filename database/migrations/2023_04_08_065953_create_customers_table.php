@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('code')->unique();
+            $table->string('token_10')->unique();
             $table->string('nim')->nullable();
             $table->string('email')->unique();
             $table->string('jurusan');

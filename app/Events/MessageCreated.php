@@ -12,19 +12,19 @@ class MessageCreated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $message;
-    public $room_id;
-    public $sender, $receiver, $role_identity;
+    public $room_code;
+    public $customer_code, $cs_code, $sender;
 
     /**
      * Create a new event instance.
      */
-    public function __construct($message, $room_id, $sender, $receiver, $role_identity)
+    public function __construct($message, $room_code, $customer_code, $cs_code, $sender)
     {
         $this->message = $message;
-        $this->room_id = $room_id;
+        $this->room_code = $room_code;
+        $this->customer_code = $customer_code;
+        $this->cs_code = $cs_code;
         $this->sender = $sender;
-        $this->receiver = $receiver;
-        $this->role_identity = $role_identity;
     }
 
     /**
@@ -35,7 +35,7 @@ class MessageCreated implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel("messages." . $this->room_id)
+            new Channel("messages." . $this->room_code)
         ];
     }
 }
