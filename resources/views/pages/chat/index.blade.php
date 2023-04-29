@@ -43,6 +43,66 @@
     </div>
 @endsection
 
+@section('sencondary_body')
+    <div class="mt-5">
+        <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#button-modal-preview"
+            class="btn btn-primary w-max">Akhiri Sesi</a>
+    </div>
+    <div id="button-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"> <a data-tw-dismiss="modal" href="javascript:;"> <i data-lucide="x"
+                        class="w-8 h-8 text-slate-400"></i> </a>
+                <div class="modal-body p-0">
+                    <div class="p-5 text-center">
+                        <div class="text-3xl mt-5">Yakin Ingin Mengakhiri Sesi?</div>
+                        <div class="text-slate-500 mt-2">Berikan Rating</div>
+                    </div>
+                    <div class="rating flex items-center">
+                        <input type="radio" name="rating" id="star1" value="1" class="hidden" />
+                        <label for="star1" class="flex items-center cursor-pointer mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M18.707 7.293a1 1 0 00-1.414 0l-3.292 3.292-3.293-3.292a1 1 0 00-1.414 1.414l3.292 3.293-3.292 3.292a1 1 0 001.414 1.414l3.293-3.292 3.292 3.292a1 1 0 001.414-1.414l-3.292-3.293 3.292-3.292a1 1 0 000-1.414z" />
+                            </svg>
+                        </label>
+                        <input type="radio" name="rating" id="star2" value="2" class="hidden" />
+                        <label for="star2" class="flex items-center cursor-pointer mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M18.707 7.293a1 1 0 00-1.414 0l-3.292 3.292-3.293-3.292a1 1 0 00-1.414 1.414l3.292 3.293-3.292 3.292a1 1 0 001.414 1.414l3.293-3.292 3.292 3.292a1 1 0 001.414-1.414l-3.292-3.293 3.292-3.292a1 1 0 000-1.414z" />
+                            </svg>
+                        </label>
+                        <input type="radio" name="rating" id="star3" value="3" class="hidden" />
+                        <label for="star3" class="flex items-center cursor-pointer mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M18.707 7.293a1 1 0 00-1.414 0l-3.292 3.292-3.293-3.292a1 1 0 00-1.414 1.414l3.292 3.293-3.292 3.292a1 1 0 001.414 1.414l3.293-3.292 3.292 3.292a1 1 0 001.414-1.414l-3.292-3.293 3.292-3.292a1 1 0 000-1.414z" />
+                            </svg>
+                        </label>
+                        <input type="radio" name="rating" id="star4" value="4" class="hidden" />
+                        <label for="star4" class="flex items-center cursor-pointer mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M18.707 7.293a1 1 0 00-1.414 0l-3.292 3.292-3.293-3.292a1 1 0 00-1.414 1.414l3.292 3.293-3.292 3.292a1 1 0 001.414 1.414l3.293-3.292 3.292 3.292a1 1 0 001.414-1.414l-3.292-3.293 3.292-3.292a1 1 0 000-1.414z" />
+                            </svg>
+                        </label>
+                        <input type="radio" name="rating" id="star5" value="5" class="hidden" />
+                        <label for="star5" class="flex items-center cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path
+                                    d="M18.707 7.293a1 1 0 00-1.414 0l-3.292 3.292-3.293-3.292a1 1 0 00-1.414 1.414l3.292 3.293-3.292 3.292a1 1 0 001.414 1.414l3.293-3.292 3.292 3.292a1 1 0 001.414-1.414l-3.292-3.293 3.292-3.292a1 1 0 000-1.414z" />
+                            </svg>
+                        </label>
+                    </div>
+                    <div class="px-5 pb-8 text-center"> <button type="button" data-tw-dismiss="modal"
+                            class="btn btn-primary w-24">Ok</button> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
 
 @section('script')
     <script>

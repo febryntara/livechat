@@ -36,7 +36,7 @@
                 <div
                     class="my-auto mx-auto xl:ml-20 bg-white dark:bg-darkmode-600 xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
                     <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left">
-                        Sign In
+                        Ajukan Layanan
                     </h2>
                     <div class="intro-x mt-2 text-slate-400 xl:hidden text-center">A few more clicks to sign in to your
                         account. Manage all your e-commerce accounts in one place</div>
@@ -67,9 +67,12 @@
                             @endforelse
                         </select>
                     </div>
-                    <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
-                        <input type="submit" value="Minta Layanan"
-                            class="btn btn-primary bg-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">
+                    <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left w-full flex justify-center">
+                        <button type="submit"
+                            class="btn btn-primary text-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Minta
+                            Layanan</button>
+                        <a href="{{ route('auth.signin') }}"
+                            class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Login CS</a>
                     </div>
                 </div>
             </form>
