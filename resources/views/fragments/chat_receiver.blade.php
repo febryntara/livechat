@@ -2,7 +2,8 @@
     <div class='w-10 h-10 hidden sm:block flex-none image-fit relative mr-5'>
         <img alt='Midone - HTML Admin Template' class='rounded-full' src='{{ asset('dist/images/profile-2.jpg') }}'>
     </div>
-    <div class='bg-slate-100 dark:bg-darkmode-400 px-4 py-3 text-slate-500 rounded-r-md rounded-t-md'>{{ $message }}
+    <div class='bg-slate-100 dark:bg-darkmode-400 px-4 py-3 text-slate-500 rounded-r-md rounded-t-md'>
+        {!! nl2br(e($message)) !!}
         <div class='mt-1 text-xs text-slate-500'>2 mins ago</div>
     </div>
     {{-- <div class='hidden sm:block dropdown ml-3 my-auto'>

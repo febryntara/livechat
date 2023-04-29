@@ -52,52 +52,55 @@
         <div class="modal-dialog">
             <div class="modal-content"> <a data-tw-dismiss="modal" href="javascript:;"> <i data-lucide="x"
                         class="w-8 h-8 text-slate-400"></i> </a>
-                <div class="modal-body p-0">
+                <form class="modal-body p-0" method="POST" action="{{ route('chat.end', ['room' => $room]) }}">
+                    @csrf
                     <div class="p-5 text-center">
                         <div class="text-3xl mt-5">Yakin Ingin Mengakhiri Sesi?</div>
                         <div class="text-slate-500 mt-2">Berikan Rating</div>
                     </div>
-                    <div class="rating flex items-center">
-                        <input type="radio" name="rating" id="star1" value="1" class="hidden" />
-                        <label for="star1" class="flex items-center cursor-pointer mr-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
-                                <path
-                                    d="M18.707 7.293a1 1 0 00-1.414 0l-3.292 3.292-3.293-3.292a1 1 0 00-1.414 1.414l3.292 3.293-3.292 3.292a1 1 0 001.414 1.414l3.293-3.292 3.292 3.292a1 1 0 001.414-1.414l-3.292-3.293 3.292-3.292a1 1 0 000-1.414z" />
-                            </svg>
-                        </label>
-                        <input type="radio" name="rating" id="star2" value="2" class="hidden" />
-                        <label for="star2" class="flex items-center cursor-pointer mr-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
-                                <path
-                                    d="M18.707 7.293a1 1 0 00-1.414 0l-3.292 3.292-3.293-3.292a1 1 0 00-1.414 1.414l3.292 3.293-3.292 3.292a1 1 0 001.414 1.414l3.293-3.292 3.292 3.292a1 1 0 001.414-1.414l-3.292-3.293 3.292-3.292a1 1 0 000-1.414z" />
-                            </svg>
-                        </label>
-                        <input type="radio" name="rating" id="star3" value="3" class="hidden" />
-                        <label for="star3" class="flex items-center cursor-pointer mr-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
-                                <path
-                                    d="M18.707 7.293a1 1 0 00-1.414 0l-3.292 3.292-3.293-3.292a1 1 0 00-1.414 1.414l3.292 3.293-3.292 3.292a1 1 0 001.414 1.414l3.293-3.292 3.292 3.292a1 1 0 001.414-1.414l-3.292-3.293 3.292-3.292a1 1 0 000-1.414z" />
-                            </svg>
-                        </label>
-                        <input type="radio" name="rating" id="star4" value="4" class="hidden" />
-                        <label for="star4" class="flex items-center cursor-pointer mr-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
-                                <path
-                                    d="M18.707 7.293a1 1 0 00-1.414 0l-3.292 3.292-3.293-3.292a1 1 0 00-1.414 1.414l3.292 3.293-3.292 3.292a1 1 0 001.414 1.414l3.293-3.292 3.292 3.292a1 1 0 001.414-1.414l-3.292-3.293 3.292-3.292a1 1 0 000-1.414z" />
-                            </svg>
-                        </label>
-                        <input type="radio" name="rating" id="star5" value="5" class="hidden" />
-                        <label for="star5" class="flex items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path
-                                    d="M18.707 7.293a1 1 0 00-1.414 0l-3.292 3.292-3.293-3.292a1 1 0 00-1.414 1.414l3.292 3.293-3.292 3.292a1 1 0 001.414 1.414l3.293-3.292 3.292 3.292a1 1 0 001.414-1.414l-3.292-3.293 3.292-3.292a1 1 0 000-1.414z" />
-                            </svg>
-                        </label>
+
+                    <div class="flex items-center w-max mx-auto">
+                        <svg aria-hidden="true" class="w-10 h-10 text-gray-300 star" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <title>First star</title>
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                            </path>
+                        </svg>
+                        <svg aria-hidden="true" class="w-10 h-10 text-gray-300 star" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <title>Second star</title>
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                            </path>
+                        </svg>
+                        <svg aria-hidden="true" class="w-10 h-10 text-gray-300 star" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <title>Third star</title>
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                            </path>
+                        </svg>
+                        <svg aria-hidden="true" class="w-10 h-10 text-gray-300 star" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <title>Fourth star</title>
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                            </path>
+                        </svg>
+                        <svg aria-hidden="true" class="w-10 h-10 text-gray-300 star" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <title>Fifth star</title>
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                            </path>
+                        </svg>
                     </div>
-                    <div class="px-5 pb-8 text-center"> <button type="button" data-tw-dismiss="modal"
-                            class="btn btn-primary w-24">Ok</button> </div>
-                </div>
+                    <input type="hidden" name="star_value" id="star-value">
+                    <input type="hidden" name="ending_token" value="{{ $room->key }}">
+                    <div class="mt-5 px-5 pb-8 text-center"> <button type="submit" data-tw-dismiss="modal"
+                            class="btn btn-primary text-primary w-max">Akhiri Layanan</button> </div>
+                </form>
             </div>
         </div>
     </div>
@@ -119,6 +122,23 @@
                     console.log(error);
                 })
 
+        });
+
+        const stars = document.querySelectorAll('.star');
+
+        stars.forEach((star, index) => {
+
+            star.addEventListener('click', () => {
+                $('#star-value').val(index + 1)
+                for (let i = 0; i <= index; i++) {
+                    stars[i].classList.remove('text-gray-300');
+                    stars[i].classList.add('text-yellow-400');
+                }
+                for (let i = index + 1; i < stars.length; i++) {
+                    stars[i].classList.remove('text-yellow-400');
+                    stars[i].classList.add('text-gray-300');
+                }
+            });
         });
 
         function sendMessage(customer_code, cs_code) {
@@ -144,6 +164,22 @@
             };
             xhr.send(data);
         }
+
+        var textarea = document.getElementById("chat-input");
+        textarea.addEventListener("keydown", function(event) {
+            if (event.keyCode === 13 && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage('{{ $room->customer->code }}', '{{ $room->department->code }}')
+            } else if (event.keyCode === 13 && event.shiftKey) {
+                // Insert new line
+                var start = this.selectionStart;
+                var end = this.selectionEnd;
+                var value = this.value;
+                this.value = value.substring(0, start) + "\n" + value.substring(end);
+                this.selectionStart = this.selectionEnd = start + 1;
+                event.preventDefault();
+            }
+        });
 
         function ajaxWrapper(url, method, data, successCallback, beforeSendCallback, errorCallback) {
             // Inisialisasi objek XMLHttpRequest

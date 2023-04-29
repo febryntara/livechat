@@ -12,6 +12,8 @@ class RoomChat extends Model
     use HasFactory;
     protected $fillable = ["code", "key", "customer_code", "department_code", "status", "link"];
     protected $with = ['department', 'customer'];
+
+    // realtions
     public function customer()
     {
         return $this->hasOne(Customer::class, 'code', 'customer_code');
@@ -23,6 +25,14 @@ class RoomChat extends Model
     public function messages()
     {
         return $this->hasMany(Message::class, 'room_code', 'code');
+    }
+
+    // method
+    public function endchat()
+    {
+        $this->status = "ended";
+        $this->save();
+        return $this;
     }
 
     public static function boot()

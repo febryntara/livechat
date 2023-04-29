@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\RoomAppear;
 use App\Models\Department;
 use App\Models\Message;
+use App\Models\Rating;
 use App\Models\RoomChat;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class RoomChatController extends Controller
 {
@@ -28,10 +31,16 @@ class RoomChatController extends Controller
     }
     public function openForCS(RoomChat $room, Request $request)
     {
+        // <=== middleware alternatif ===>
         if ($room->status == "ready") {
             $room->status = 'active';
             $room->save();
         }
+
+        if ($room->status == "ended") {
+            return redirect()->route('chat.stack')->with('error', 'Sesi Telah Berlalu!<br>Room Tidak Dapat Diakses Kembali!');
+        }
+        // <=== middleware alternatif ===>
 
         $data = [
             'title' => 'Chat Room',
@@ -60,8 +69,24 @@ class RoomChatController extends Controller
         return view('pages.chat.chat_stack', $data);
     }
 
-    private function MessageProcessor(Collection $messages)
+    public function endChat(RoomChat $room, Request $request)
     {
-        // foreach
+        $validator = Validator::make($request->all(), [
+            'star_value' => 'required|numeric',
+            'ending_token' => 'required|string'
+        ]);
+
+        if ($validator->fails() || $room->key != $request->ending_token) {
+            return redirect()->back()->withErrors($validator)->with('error', "Terjadi Kesalahan Saat Memberi Rating!<br>SIlahkan Coba Lagi!");
+        }
+        Rating::create([
+            'stars' => $validator->validate()['star_value'],
+            'customer_code' => $room->customer->code,
+            'department_code' => $room->department->code,
+        ]);
+
+        $room->endchat();
+        $request->session()->flush();
+        return redirect()->route('auth.enter')->with('success', "Sesi Chat Telah Berakhir!");
     }
 }
