@@ -36,6 +36,10 @@ class Customer extends Model
     }
 
     // relations
+    public function rooms()
+    {
+        return $this->hasMany(RoomChat::class, 'customer_code', 'code');
+    }
     // events
 
     protected static function booted()

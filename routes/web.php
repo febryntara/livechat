@@ -6,6 +6,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\RoomChatController;
 use App\Http\Controllers\UserController;
 use App\Mail\RequestService;
+use App\Models\Customer;
 use App\Models\Message;
 use App\Models\MessageEncryption;
 use App\Models\StringComparison;
@@ -28,7 +29,8 @@ Route::get('/', function () {
 })->name('dashboard')->middleware('auth');
 
 Route::get('test', function (Request $request) {
-    // return    $similarity = StringComparison::calculate("I Kadek Cahyani Pratiwi", "@gmwl.om");
+    $customer = Customer::get()[1];
+    dump($customer->rooms()->latest()->first());
 });
 
 Route::get('/send/messages', function () {

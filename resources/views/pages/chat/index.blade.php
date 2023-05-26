@@ -44,10 +44,12 @@
 @endsection
 
 @section('sencondary_body')
-    <div class="mt-5">
-        <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#button-modal-preview"
-            class="btn btn-primary w-max">Akhiri Sesi</a>
-    </div>
+    @cannot('chat-access')
+        <div class="mt-5">
+            <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#button-modal-preview"
+                class="btn btn-primary w-max">Akhiri Sesi</a>
+        </div>
+    @endcannot
     <div id="button-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content"> <a data-tw-dismiss="modal" href="javascript:;"> <i data-lucide="x"

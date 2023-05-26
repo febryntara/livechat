@@ -45,5 +45,16 @@ class RoomChat extends Model
             $data->status = "unregistred";
             $data->link = route('room.open', ["room" => $data]);
         });
+
+        self::created(function ($data) {
+            $customer = $data->customer;
+            $latestRoom = $customer->rooms()->latest()->first();
+            foreach ($customer->rooms as $index => $room) {
+                if ($room->code != $latestRoom->code && $room->status != "ended") {
+                    $room->status = "ended";
+                    $room->save();
+                }
+            }
+        });
     }
 }

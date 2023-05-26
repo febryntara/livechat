@@ -16,7 +16,6 @@
 
 <body class="py-5 md:py-0">
     @yield('base_body')
-
     @if (session('error'))
         <div id="alert-message"
             class="fixed w-[70vw] lg:w-96 p-3 rounded-2xl top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-center bg-white shadow-md z-[9999] border-y-2 border-danger">
