@@ -36,13 +36,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('chat.stack') }}" class="side-menu">
+                        <a href="{{ route('chat.active') }}" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
                             <div class="side-menu__title"> Chat Berlangsung </div>
                         </a>
                     </li>
                     <li>
-                        <a href="simple-menu-light-dashboard-overview-1.html" class="side-menu">
+                        <a href="{{ route('chat.ended') }}" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
                             <div class="side-menu__title"> Chat selesai </div>
                         </a>

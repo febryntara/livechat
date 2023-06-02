@@ -69,6 +69,29 @@ class RoomChatController extends Controller
         return view('pages.chat.chat_stack', $data);
     }
 
+    public function chatActive()
+    {
+        $department = auth()->user()->department;
+        $data = [
+            'title' => 'Chat Stack',
+            'department' => $department,
+            'rooms' => $department->rooms()->where('status', 'active')->get()
+        ];
+
+        return view('pages.chat.chat_stack', $data);
+    }
+    public function chatEnded()
+    {
+        $department = auth()->user()->department;
+        $data = [
+            'title' => 'Chat Stack',
+            'department' => $department,
+            'rooms' => $department->rooms()->where('status', 'ended')->get()
+        ];
+
+        return view('pages.chat.chat_list', $data);
+    }
+
     public function endChat(RoomChat $room, Request $request)
     {
         $validator = Validator::make($request->all(), [

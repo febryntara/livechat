@@ -53,6 +53,8 @@ Route::controller(UserController::class)->group(function () {
 Route::controller(RoomChatController::class)->group(function () {
     Route::get('/room-{room:code}', "openForC")->name("room.open")->middleware('customer');
     Route::get('/chat/stack', 'chatStack')->name("chat.stack")->middleware('auth');
+    Route::get('/chat/active', 'chatActive')->name("chat.active")->middleware('auth');
+    Route::get('/chat/ended', 'chatEnded')->name("chat.ended")->middleware('auth');
     Route::get('/chat/{room:code}', 'openForCS')->name("chat.open")->middleware('auth');
     Route::post('/chat/{room:code}/end-chat', 'endChat')->name("chat.end"); //logic middleware ada di controller
 });
