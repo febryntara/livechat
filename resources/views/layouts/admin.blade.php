@@ -3,6 +3,7 @@
     <title>Dashboard - Enigma - Tailwind HTML Admin Template</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{ asset('dist/css/app.css') }}" />
+    <link rel="stylesheet" href="{{ asset('dist/css/my.css') }}" />
     <!-- END: CSS Assets-->
     @yield('head')
 @endsection
@@ -22,9 +23,7 @@
         <div class="content">
             <div class="grid grid-cols-12 gap-6">
                 <div class="col-span-12 2xl:col-span-9">
-                    <div class="grid grid-cols-12 gap-6">
-                        @yield('body')
-                    </div>
+                    @yield('body')
                 </div>
                 <div class="col-span-12 2xl:col-span-3">
                     <div class="2xl:border-l -mb-10 pb-10">
@@ -41,6 +40,6 @@
 
 @section('base_script')
     <!-- BEGIN: JS Assets-->
-    <script src="{{ asset('dist/js/app.js') }}"></script>
+    @yield('script')
     <!-- END: JS Assets-->
 @endsection
