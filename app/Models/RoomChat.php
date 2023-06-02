@@ -24,7 +24,7 @@ class RoomChat extends Model
     }
     public function rating()
     {
-        return $this->hasOne(Rating::class, 'code', 'room_code');
+        return $this->hasOne(Rating::class, 'room_code', 'code');
     }
     public function messages()
     {
