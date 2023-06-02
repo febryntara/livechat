@@ -63,9 +63,7 @@
                     stopOnFocus: true,
                 }).showToast();
                 audio.play().catch(function(error) {
-                    // Tangani kesalahan saat memutar suara secara otomatis
                     if (error.name === 'NotAllowedError') {
-                        // Browser memblokir pemutaran otomatis, minta izin pengguna
                         audio.play();
                     }
                 });
