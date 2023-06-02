@@ -559,6 +559,10 @@ video {
   position: relative;
 }
 
+.sticky {
+  position: sticky;
+}
+
 .inset-y-0 {
   top: 0px;
   bottom: 0px;
@@ -1731,6 +1735,10 @@ video {
 
   .sm\:mt-2 {
     margin-top: 0.5rem;
+  }
+
+  .sm\:ml-40 {
+    margin-left: 10rem;
   }
 
   .sm\:block {
