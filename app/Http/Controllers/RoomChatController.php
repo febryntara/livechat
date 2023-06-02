@@ -106,6 +106,7 @@ class RoomChatController extends Controller
             'stars' => $validator->validate()['star_value'],
             'customer_code' => $room->customer->code,
             'department_code' => $room->department->code,
+            'room_code' => $room->code,
         ]);
 
         $room->endchat();

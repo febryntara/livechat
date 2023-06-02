@@ -9,6 +9,7 @@ use App\Mail\RequestService;
 use App\Models\Customer;
 use App\Models\Message;
 use App\Models\MessageEncryption;
+use App\Models\RoomChat;
 use App\Models\StringComparison;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,8 +30,7 @@ Route::get('/', function () {
 })->name('dashboard')->middleware('auth');
 
 Route::get('test', function (Request $request) {
-    $customer = Customer::get()[1];
-    dump($customer->rooms()->latest()->first());
+    dd(RoomChat::first()->department);
 });
 
 Route::get('/send/messages', function () {

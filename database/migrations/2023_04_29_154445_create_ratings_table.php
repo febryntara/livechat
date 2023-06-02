@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('stars')->default(1);
             $table->string('customer_code');
             $table->string('department_code');
+            $table->string('room_code');
             $table->timestamps();
         });
     }

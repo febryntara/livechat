@@ -559,10 +559,6 @@ video {
   position: relative;
 }
 
-.sticky {
-  position: sticky;
-}
-
 .inset-y-0 {
   top: 0px;
   bottom: 0px;
@@ -1133,11 +1129,6 @@ video {
 
 .border-white\/\[0\.08\] {
   border-color: rgb(255 255 255 / 0.08);
-}
-
-.border-black {
-  --tw-border-opacity: 1;
-  border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
 .bg-gray-100 {
@@ -1740,10 +1731,6 @@ video {
 
   .sm\:mt-2 {
     margin-top: 0.5rem;
-  }
-
-  .sm\:ml-40 {
-    margin-left: 10rem;
   }
 
   .sm\:block {
