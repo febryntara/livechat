@@ -26,7 +26,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts.admin');
+    $data = [
+        'department' => auth()->user()->department,
+    ];
+    return view('layouts.admin', $data);
 })->name('dashboard')->middleware('auth');
 
 Route::get('test', function (Request $request) {

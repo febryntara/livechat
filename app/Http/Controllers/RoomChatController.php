@@ -51,6 +51,7 @@ class RoomChatController extends Controller
                 return $message;
             }),
             'iam' => $room->department,
+            'department' => $room->department,
             'he' => $room->customer,
         ];
         // return $data['messages'];
