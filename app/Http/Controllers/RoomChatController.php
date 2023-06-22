@@ -48,7 +48,7 @@ class RoomChatController extends Controller
             'room' => $room,
             'messages' => $room->messages->map(function ($message, $index) use ($room) {
                 $message->message = Message::SecureRead($room->customer->token_10, $room->department->token_16, $message->chipertext);
-                $message->view = view(($message->sender == $room->department->code ? 'fragments.chat_sender' : 'fragments.chat_receiver'), ['message' => $message->message])->render();
+                $message->view = view(($message->sender == $room->department->code ? 'fragments.chat_sender' : 'fragments.chat_receiver'), ['message' => $message->message, 'time' => Carbon::parse($message->created_at)->format('H:i')])->render();
                 return $message;
             }),
             'iam' => $room->department,

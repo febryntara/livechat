@@ -4,38 +4,38 @@
     <div class="intro-y chat grid grid-cols-12 gap-5 mt-5">
         <!-- BEGIN: Chat Content -->
         <div class="intro-y col-span-12">
-            <div class="chat__box box">
+            <div class="chat__box box h-screen flex flex-col">
+                <!-- Tambahkan kelas "h-screen" di sini -->
                 <!-- BEGIN: Chat Active -->
-                <div class="h-full flex flex-col">
-                    <div class="flex flex-col sm:flex-row border-b border-slate-200/60 dark:border-darkmode-400 px-5 py-4">
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 sm:w-12 sm:h-12 flex-none image-fit relative">
-                                <img alt="Midone - HTML Admin Template" class="rounded-full"
-                                    src="{{ asset('dist/images/profile-2.jpg') }}">
-                            </div>
-                            <div class="ml-3 mr-auto">
-                                <div class="font-medium text-base">{{ $he->name }}</div>
-                                <div class="text-slate-500 text-xs sm:text-sm">Hey, I am using chat <span
-                                        class="mx-1">•</span> Online</div>
-                            </div>
+                <div class="flex flex-col sm:flex-row border-b border-slate-200/60 dark:border-darkmode-400 px-5 py-4">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 flex-none image-fit relative">
+                            <img alt="Midone - HTML Admin Template" class="rounded-full"
+                                src="{{ asset('dist/images/profile-2.jpg') }}">
+                        </div>
+                        <div class="ml-3 mr-auto">
+                            <div class="font-medium text-base">{{ $he->name }}</div>
+                            <div class="text-slate-500 text-xs sm:text-sm">Hey, I am using chat <span
+                                    class="mx-1">•</span> Online</div>
                         </div>
                     </div>
-                    <div class="overflow-y-scroll scrollbar-hidden px-5 pt-5 flex-1" id="chat-area">
-                        @forelse ($messages as $message)
-                            {!! $message->view !!}
-                            <div class="clear-both"></div>
-                        @empty
-                        @endforelse
-                    </div>
-                    <div class="pt-4 pb-10 sm:py-4 flex items-center border-t border-slate-200/60 dark:border-darkmode-400">
-                        <textarea id="chat-input"
-                            class="chat__box__input form-control dark:bg-darkmode-600 h-16 resize-none border-transparent px-5 py-3 shadow-none focus:border-transparent focus:ring-0"
-                            rows="1" placeholder="Type your message..."></textarea>
-                        <a href="javascript:;"
-                            onclick="sendMessage('{{ $room->customer->code }}', '{{ $room->department->code }}')"
-                            class="w-8 h-8 sm:w-10 sm:h-10 bg-primary text-white rounded-full flex-none flex items-center justify-center mr-5">
-                            <i data-lucide="send" class="w-4 h-4"></i> </a>
-                    </div>
+                </div>
+                <div class="overflow-y-scroll scrollbar-hidden px-5 pt-5 flex-1" id="chat-area"
+                    style="max-height: calc(100vh - 300px);">
+                    @forelse ($messages as $message)
+                        {!! $message->view !!}
+                        <div class="clear-both"></div>
+                    @empty
+                    @endforelse
+                </div>
+                <div class="pt-4 pb-10 sm:py-4 flex items-center border-t border-slate-200/60 dark:border-darkmode-400">
+                    <textarea id="chat-input"
+                        class="chat__box__input form-control dark:bg-darkmode-600 h-16 resize-none border-transparent px-5 py-3 shadow-none focus:border-transparent focus:ring-0"
+                        rows="1" placeholder="Type your message..."></textarea>
+                    <a href="javascript:;"
+                        onclick="sendMessage('{{ $room->customer->code }}', '{{ $room->department->code }}')"
+                        class="w-8 h-8 sm:w-10 sm:h-10 bg-primary text-white rounded-full flex-none flex items-center justify-center mr-5">
+                        <i data-lucide="send" class="w-4 h-4"></i> </a>
                 </div>
             </div>
         </div>
@@ -118,6 +118,7 @@
                     $('#chat-area').append(parsedResult.data.sender == "{{ $iam->code }}" ?
                         parsedResult.view['sender'] : parsedResult.view['receiver'])
                     $('#chat-area').append(`<div class="clear-both"></div>`);
+                    scrollToBottom();
                 },
                 function() {},
                 function(error) {
@@ -216,6 +217,11 @@
             } else {
                 xhr.send();
             }
+        }
+
+        function scrollToBottom() {
+            var chatArea = document.getElementById('chat-area');
+            chatArea.scrollTop = chatArea.scrollHeight;
         }
     </script>
 @endsection

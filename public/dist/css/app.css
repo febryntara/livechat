@@ -15909,7 +15909,7 @@ html body{
     height: 525px;
 }
 .chat .chat__box{
-    height: 782px;
+    height: auto;
 }
 .chat .chat__box .chat__box__text-box{
     max-width: 49%;
