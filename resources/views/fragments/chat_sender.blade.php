@@ -17,7 +17,7 @@
     </div> --}}
     <div class='bg-primary px-4 py-3 text-white rounded-l-md rounded-t-md'>
         {!! nl2br(e($message)) !!}
-        <div class='mt-1 text-xs text-white text-opacity-80'>1 mins ago</div>
+        <div class='mt-1 text-xs text-white text-opacity-80'>{{ $time }}</div>
     </div>
     <div class='w-10 h-10 hidden sm:block flex-none image-fit relative ml-5'>
         <img alt='Midone - HTML Admin Template' class='rounded-full' src='{{ asset('dist/images/profile-2.jpg') }}'>

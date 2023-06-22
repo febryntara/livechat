@@ -43,9 +43,10 @@ class ChatController extends Controller
     {
         $room = RoomChat::where('code', $request->room_code)->first();
         $message = Message::SecureRead($room->customer->token_10, $room->department->token_16, $request->message);
+        $time = $request->time;
         $view = [
-            'sender' => view('fragments.chat_sender', ['message' => $message])->render(),
-            'receiver' => view('fragments.chat_receiver', ['message' => $message])->render(),
+            'sender' => view('fragments.chat_sender', ['message' => $message, 'time' => $time])->render(),
+            'receiver' => view('fragments.chat_receiver', ['message' => $message, 'time' => $time])->render(),
         ];
         return response()->json(['view' => $view, 'data' => $request->all()]);
     }

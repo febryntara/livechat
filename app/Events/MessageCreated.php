@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use Carbon\Carbon;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
@@ -13,7 +14,7 @@ class MessageCreated implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $message;
     public $room_code;
-    public $customer_code, $cs_code, $sender;
+    public $customer_code, $cs_code, $sender, $time;
 
     /**
      * Create a new event instance.
@@ -25,6 +26,7 @@ class MessageCreated implements ShouldBroadcast
         $this->customer_code = $customer_code;
         $this->cs_code = $cs_code;
         $this->sender = $sender;
+        $this->time = Carbon::now()->format('H:i');
     }
 
     /**
