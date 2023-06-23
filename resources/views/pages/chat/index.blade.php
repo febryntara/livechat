@@ -15,8 +15,8 @@
                         </div>
                         <div class="ml-3 mr-auto">
                             <div class="font-medium text-base">{{ $he->name }}</div>
-                            <div class="text-slate-500 text-xs sm:text-sm">Hey, I am using chat <span
-                                    class="mx-1">•</span> Online</div>
+                            <div class="text-slate-500 text-xs sm:text-sm">{{ $he->jurusan ?? 'Hai, Saya Memakai Chat!' }}
+                            </div>
                         </div>
                     </div>
                 </div>
