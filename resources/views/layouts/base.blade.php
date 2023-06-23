@@ -37,6 +37,7 @@
     <script src="{{ asset('dist/js/app.js') }}"></script>
     <script src="{{ asset('build/assets/app-b09f75ac.js') }}"></script>
     <script src="{{ asset('dist/js/jquery-3.6.1.min.js') }}"></script>
+    <script src="{{ asset('js/function_lib.js') }}"></script>
     <script>
         $('#alert-message').ready(function() {
             setTimeout(() => {

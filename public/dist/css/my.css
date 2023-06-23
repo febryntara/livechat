@@ -592,6 +592,10 @@ video {
   grid-column: span 12 / span 12;
 }
 
+.col-span-6 {
+  grid-column: span 6 / span 6;
+}
+
 .float-right {
   float: right;
 }
@@ -796,6 +800,10 @@ video {
   height: 4rem;
 }
 
+.h-24 {
+  height: 6rem;
+}
+
 .h-3 {
   height: 0.75rem;
 }
@@ -828,56 +836,12 @@ video {
   height: 70px;
 }
 
-.h-\[70vh\] {
-  height: 70vh;
-}
-
 .h-full {
   height: 100%;
 }
 
 .h-screen {
   height: 100vh;
-}
-
-.h-\[50vh\] {
-  height: 50vh;
-}
-
-.h-\[10vh\] {
-  height: 10vh;
-}
-
-.h-\[10vh_\!important\] {
-  height: 10vh !important;
-}
-
-.h-\[100vh\] {
-  height: 100vh;
-}
-
-.h-\[80vh\] {
-  height: 80vh;
-}
-
-.h-\[100\%\] {
-  height: 100%;
-}
-
-.h-\[100\%_\!important\] {
-  height: 100% !important;
-}
-
-.h-\[60\%\] {
-  height: 60%;
-}
-
-.h-\[300px\] {
-  height: 300px;
-}
-
-.h-\[300px_\!important\] {
-  height: 300px !important;
 }
 
 .min-h-screen {
@@ -1291,6 +1255,11 @@ video {
 .px-6 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 
 .py-2 {
@@ -1876,6 +1845,10 @@ video {
     top: 0px;
   }
 
+  .md\:col-span-6 {
+    grid-column: span 6 / span 6;
+  }
+
   .md\:-mx-0 {
     margin-left: -0px;
     margin-right: -0px;
@@ -1947,12 +1920,56 @@ video {
     grid-column: span 8 / span 8;
   }
 
+  .lg\:col-span-6 {
+    grid-column: span 6 / span 6;
+  }
+
+  .lg\:mb-0 {
+    margin-bottom: 0px;
+  }
+
+  .lg\:ml-2 {
+    margin-left: 0.5rem;
+  }
+
+  .lg\:mr-1 {
+    margin-right: 0.25rem;
+  }
+
+  .lg\:mr-auto {
+    margin-right: auto;
+  }
+
+  .lg\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .lg\:h-12 {
+    height: 3rem;
+  }
+
+  .lg\:w-1\/2 {
+    width: 50%;
+  }
+
+  .lg\:w-12 {
+    width: 3rem;
+  }
+
   .lg\:w-2\/4 {
     width: 50%;
   }
 
   .lg\:w-96 {
     width: 24rem;
+  }
+
+  .lg\:flex-row {
+    flex-direction: row;
+  }
+
+  .lg\:flex-nowrap {
+    flex-wrap: nowrap;
   }
 
   .lg\:gap-8 {
@@ -1965,6 +1982,10 @@ video {
 
   .lg\:p-8 {
     padding: 2rem;
+  }
+
+  .lg\:text-left {
+    text-align: left;
   }
 }
 

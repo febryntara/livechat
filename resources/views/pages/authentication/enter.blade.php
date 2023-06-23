@@ -83,4 +83,5 @@
 @section('base_script')
     <script src="{{ asset('dist/js/app.js') }}"></script>
     <script src="{{ asset('build/assets/app-b09f75ac.js') }}"></script>
+    <script src="{{ asset('js/function_lib.js') }}"></script>
 @endsection
