@@ -1,24 +1,26 @@
 <nav class="side-nav">
     <ul>
-        <li>
-            <a href="javascript:;.html" class="side-menu {{ active_checker('/', 'side-menu--active', '') }}">
-                <div class="side-menu__icon"> <i data-lucide="home"></i> </div>
-                <div class="side-menu__title">
-                    Dashboard
-                    <div class="side-menu__sub-icon transform rotate-180"> <i data-lucide="chevron-down"></i>
+        @can('both')
+            <li>
+                <a href="javascript:;.html" class="side-menu {{ active_checker('/', 'side-menu--active', '') }}">
+                    <div class="side-menu__icon"> <i data-lucide="home"></i> </div>
+                    <div class="side-menu__title">
+                        Dashboard
+                        <div class="side-menu__sub-icon transform rotate-180"> <i data-lucide="chevron-down"></i>
+                        </div>
                     </div>
-                </div>
-            </a>
-            <ul class="{{ active_checker('', 'side-menu__sub-open', '') }}">
-                <li>
-                    <a href="{{ route('dashboard') }}"
-                        class="side-menu {{ active_checker('/', 'side-menu--active', '') }}">
-                        <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
-                        <div class="side-menu__title"> Summary </div>
-                    </a>
-                </li>
-            </ul>
-        </li>
+                </a>
+                <ul class="{{ active_checker('', 'side-menu__sub-open', '') }}">
+                    <li>
+                        <a href="{{ route('dashboard') }}"
+                            class="side-menu {{ active_checker('/', 'side-menu--active', '') }}">
+                            <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
+                            <div class="side-menu__title"> Summary </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        @endcan
         @can('chat-access', auth()->user())
             <li>
                 <a href="javascript:;" class="side-menu">
@@ -105,28 +107,30 @@
                 </ul>
             </li>
         @endcan
-        <li>
-            <a href="javascript:;" class="side-menu">
-                <div class="side-menu__icon"> <i data-lucide="edit"></i> </div>
-                <div class="side-menu__title">
-                    Data Mahasiswa
-                    <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
-                </div>
-            </a>
-            <ul class="">
-                <li>
-                    <a href="side-menu-light-crud-data-list.html" class="side-menu">
-                        <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
-                        <div class="side-menu__title"> Jurusan A </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="side-menu-light-crud-form.html" class="side-menu">
-                        <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
-                        <div class="side-menu__title"> Jurusan B </div>
-                    </a>
-                </li>
-            </ul>
-        </li>
+        @can('both')
+            <li>
+                <a href="javascript:;" class="side-menu">
+                    <div class="side-menu__icon"> <i data-lucide="edit"></i> </div>
+                    <div class="side-menu__title">
+                        Data Mahasiswa
+                        <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                    </div>
+                </a>
+                <ul class="">
+                    <li>
+                        <a href="side-menu-light-crud-data-list.html" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
+                            <div class="side-menu__title"> Jurusan A </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="side-menu-light-crud-form.html" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
+                            <div class="side-menu__title"> Jurusan B </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        @endcan
     </ul>
 </nav>
