@@ -2,6 +2,7 @@
 
 use App\Events\MessageCreated;
 use App\Http\Controllers\CSController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\RoomChatController;
 use App\Http\Controllers\UserController;
@@ -81,4 +82,9 @@ Route::controller(CSController::class)->group(function () {
     Route::get('/cs/{user:code}/ubah', 'update')->name('cs.update')->middleware('auth');
     Route::patch('/cs/{user:code}/ubah', 'patch')->name('cs.patch')->middleware('auth');
     Route::delete('/cs/{user:code}/hapus', 'delete')->name('cs.delete')->middleware('auth');
+});
+
+Route::controller(CustomerController::class)->group(function () {
+    Route::get('/customer', 'index')->name('customer.index')->middleware('auth');
+    Route::get('/customer/detail/{customer:code}', 'detail')->name('customer.detail')->middleware('auth');
 });

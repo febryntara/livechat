@@ -11,6 +11,20 @@ class Customer extends Model
 {
     use HasFactory;
 
+    // custom atribute
+    public function getLastVisitedAttribute()
+    {
+        return Carbon::parse($this->last_visit);
+    }
+
+    public function getAvgRatingAttribute()
+    {
+        $ratings = $this->ratings;
+        $total_star = $ratings->sum('stars');
+        $counted_rating = $ratings->count();
+        return ceil($total_star / $counted_rating);
+    }
+
     protected $fillable = ['name', 'nim', 'jurusan', 'email', 'visit'];
     public $timestamps = true;
     public static function addOrUpdate($name, $email, $nim, $jurusan)
@@ -39,6 +53,11 @@ class Customer extends Model
     public function rooms()
     {
         return $this->hasMany(RoomChat::class, 'customer_code', 'code');
+    }
+
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class, 'customer_code', 'code');
     }
     // events
 

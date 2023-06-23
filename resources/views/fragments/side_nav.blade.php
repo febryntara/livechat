@@ -1,8 +1,8 @@
 <nav class="side-nav">
     <ul>
         @can('both')
-            <li>
-                <a href="javascript:;.html" class="side-menu {{ active_checker('/', 'side-menu--active', '') }}">
+            <li class="">
+                <a href="javascript:;" class="side-menu {{ active_checker('/', 'side-menu--active', '') }}">
                     <div class="side-menu__icon"> <i data-lucide="home"></i> </div>
                     <div class="side-menu__title">
                         Dashboard
@@ -23,7 +23,7 @@
         @endcan
         @can('chat-access', auth()->user())
             <li>
-                <a href="javascript:;" class="side-menu">
+                <a href="javascript:;" class="side-menu {{ active_checker('chat*', 'side-menu--active', '') }}">
                     <div class="side-menu__icon"> <i data-lucide="box"></i> </div>
                     <div class="side-menu__title">
                         Dialog Stack
@@ -32,19 +32,22 @@
                 </a>
                 <ul class="{{ active_checker('chat*', 'side-menu__sub-open', '') }}">
                     <li>
-                        <a href="{{ route('chat.stack') }}" class="side-menu">
+                        <a href="{{ route('chat.stack') }}"
+                            class="side-menu {{ active_checker('chat/stack', 'side-menu--active', '') }}">
                             <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
                             <div class="side-menu__title"> Permintaan Chat </div>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('chat.active') }}" class="side-menu">
+                        <a href="{{ route('chat.active') }}"
+                            class="side-menu {{ active_checker('chat/active', 'side-menu--active', '') }}">
                             <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
                             <div class="side-menu__title"> Chat Berlangsung </div>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('chat.ended') }}" class="side-menu">
+                        <a href="{{ route('chat.ended') }}"
+                            class="side-menu {{ active_checker('chat/ended', 'side-menu--active', '') }}">
                             <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
                             <div class="side-menu__title"> Chat selesai </div>
                         </a>
@@ -109,26 +112,23 @@
         @endcan
         @can('both')
             <li>
-                <a href="javascript:;" class="side-menu">
+                <a href="javascript:;" class="side-menu {{ active_checker('customer*', 'side-menu--active', '') }}">
                     <div class="side-menu__icon"> <i data-lucide="edit"></i> </div>
                     <div class="side-menu__title">
                         Data Mahasiswa
                         <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
                     </div>
                 </a>
-                <ul class="">
-                    <li>
-                        <a href="side-menu-light-crud-data-list.html" class="side-menu">
-                            <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
-                            <div class="side-menu__title"> Jurusan A </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="side-menu-light-crud-form.html" class="side-menu">
-                            <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
-                            <div class="side-menu__title"> Jurusan B </div>
-                        </a>
-                    </li>
+                <ul class="{{ active_checker('customer*', 'side-menu__sub-open', '') }}">
+                    @foreach (json_decode(env('APP_JURUSAN')) as $item)
+                        <li>
+                            <a href="{{ route('customer.index', ['jurusan' => $item->code]) }}"
+                                class="side-menu {{ request()->jurusan == $item->code ? 'side-menu--active' : null }}">
+                                <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
+                                <div class="side-menu__title"> {{ $item->name }} </div>
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </li>
         @endcan
