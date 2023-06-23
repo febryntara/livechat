@@ -104,7 +104,7 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nama' => 'required|string',
-            'nim' => 'required|numeric',
+            'nim' => [$request->jurusan != 'umum' ? 'required' : 'nullable', 'numeric'],
             'email' => 'required|email:dns',
             'jurusan' => 'required|string',
             'department' => 'required|string'

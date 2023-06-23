@@ -41,22 +41,34 @@
                     <div class="intro-x mt-2 text-slate-400 xl:hidden text-center">A few more clicks to sign in to your
                         account. Manage all your e-commerce accounts in one place</div>
                     <div class="intro-x mt-8">
+                        @error('email')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                         <input type="text" name="email" class="intro-x login__input form-control py-3 px-4 block"
                             placeholder="Email">
+                        @error('nama')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                         <input type="text" name="nama" class="intro-x login__input form-control py-3 px-4 block mt-4"
                             placeholder="Nama Lengkap">
+                        @error('nim')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                         <input type="text" name="nim" class="intro-x login__input form-control py-3 px-4 block mt-4"
                             placeholder="NIM">
+                        @error('jurusan')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                         <select class="form-select form-select-lg mt-4 sm:mt-2 sm:mr-2" name="jurusan"
                             aria-label=".form-select-lg example">
                             <option class="capitalize" value="">Jurusan</option>
-                            <option class="capitalize" value="teknik_elektro">Teknik Elektro</option>
-                            <option class="capitalize" value="teknik_sipil">Teknik Sipil</option>
-                            <option class="capitalize" value="teknik_mesin">Teknik Mesin</option>
-                            <option class="capitalize" value="akutansi">Akutansi</option>
-                            <option class="capitalize" value="pariwisata">Pariwisata</option>
-                            <option class="capitalize" value="umum">Umum</option>
+                            @foreach (json_decode(env('APP_JURUSAN')) as $item)
+                                <option class="capitalize" value="{{ $item->code }}">{{ $item->name }}</option>
+                            @endforeach
                         </select>
+                        @error('department')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                         <select class="form-select form-select-lg mt-4 sm:mt-2 sm:mr-2" name="department"
                             aria-label=".form-select-lg example">
                             <option class="capitalize" value="">Pilih Department</option>
