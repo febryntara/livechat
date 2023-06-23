@@ -21,7 +21,7 @@ class Customer extends Model
     {
         $ratings = $this->ratings;
         $total_star = $ratings->sum('stars');
-        $counted_rating = $ratings->count();
+        $counted_rating = $ratings->count() ?: 1;
         return ceil($total_star / $counted_rating);
     }
 
