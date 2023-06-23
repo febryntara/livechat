@@ -9,7 +9,7 @@ use App\Models\MessageEncryption;
 class Message extends Model
 {
     use HasFactory;
-    protected $fillable = ['chipertext', 'room_code', 'customer_code', 'cs_code', 'sender'];
+    protected $fillable = ['chipertext', 'room_code', 'customer_code', 'cs_code', 'sender', 'type', 'alias'];
 
     public static function SecureCreate(array $params, String $token_10, String $token_16)
     {
@@ -19,9 +19,10 @@ class Message extends Model
             'room_code'     => $params['room_code'],
             'customer_code' => $params['customer_code'],
             'cs_code'       => $params['cs_code'],
-            'sender'        => $params['sender']
+            'sender'        => $params['sender'],
+            'type'        => $params['type'],
+            'alias'        => $params['alias']
         ]);
-
         return $message;
     }
 

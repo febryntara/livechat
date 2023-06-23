@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('customer_code');
             $table->string('cs_code');
             $table->string('sender');
+            $table->enum('type', ['text', 'file', 'image']);
+            $table->string('alias')->nullable();
             $table->timestamps();
         });
     }

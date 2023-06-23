@@ -14,18 +14,20 @@ class MessageCreated implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $message;
     public $room_code;
-    public $customer_code, $cs_code, $sender, $time;
+    public $customer_code, $cs_code, $sender, $time, $type, $alias;
 
     /**
      * Create a new event instance.
      */
-    public function __construct($message, $room_code, $customer_code, $cs_code, $sender)
+    public function __construct($message, $room_code, $customer_code, $cs_code, $sender, $type = 'text', $alias = null)
     {
         $this->message = $message;
         $this->room_code = $room_code;
         $this->customer_code = $customer_code;
         $this->cs_code = $cs_code;
         $this->sender = $sender;
+        $this->type = $type;
+        $this->alias = $alias;
         $this->time = Carbon::now()->format('H:i');
     }
 

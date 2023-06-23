@@ -29,9 +29,14 @@
                     @endforelse
                 </div>
                 <div class="pt-4 pb-10 sm:py-4 flex items-center border-t border-slate-200/60 dark:border-darkmode-400">
+                    <input type="file" id="chat-input-file" class="w-0 overflow-hidden">
                     <textarea id="chat-input"
                         class="chat__box__input form-control dark:bg-darkmode-600 h-16 resize-none border-transparent px-5 py-3 shadow-none focus:border-transparent focus:ring-0"
                         rows="1" placeholder="Type your message..."></textarea>
+                    <a href="javascript:;"
+                        onclick="sendFile('{{ $room->customer->code }}', '{{ $room->department->code }}', 'file')"
+                        class="w-8 h-8 sm:w-10 sm:h-10 bg-primary text-white rounded-full flex-none flex items-center justify-center mr-5">
+                        <i data-lucide="paperclip" class="w-4 h-4"></i> </a>
                     <a href="javascript:;"
                         onclick="sendMessage('{{ $room->customer->code }}', '{{ $room->department->code }}')"
                         class="w-8 h-8 sm:w-10 sm:h-10 bg-primary text-white rounded-full flex-none flex items-center justify-center mr-5">
@@ -144,23 +149,51 @@
             });
         });
 
-        function sendMessage(customer_code, cs_code) {
+        function sendFile(customer_code, cs_code, type) {
+            $("#chat-input-file").click()
+            $("#chat-input-file").change(function() {
+                sendMessage(customer_code, cs_code, type)
+            })
+        }
+
+        function sendMessage(customer_code, cs_code, type = 'text') {
             const xhr = new XMLHttpRequest();
             const url = '/api/send-message';
 
             const data = new FormData();
             data.append('customer_code', customer_code);
             data.append('cs_code', cs_code);
-            data.append('message', $('#chat-input').val());
             data.append('room_code', '{{ $room->code }}');
             data.append('sender', "{{ $iam->code }}");
+
+            if (type === 'file') {
+                // Mengambil file yang dipilih
+                const fileInput = document.getElementById('chat-input-file');
+                const file = fileInput.files[0];
+                if (file) {
+                    const fileName = file.name.toLowerCase();
+                    const isImage = fileName.endsWith('.jpg') || fileName.endsWith('.jpeg') || fileName.endsWith('.png');
+                    if (isImage) {
+                        type = 'image';
+                    }
+                    data.append('message', file, file.name);
+                } else {
+                    console.log('Pilih file terlebih dahulu');
+                    return; // Menghentikan proses pengiriman jika file tidak dipilih
+                }
+                fileInput.value = null;
+            } else {
+                data.append('message', $('#chat-input').val());
+            }
+
+            data.append('type', type);
 
             xhr.open('POST', url, true);
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     const response = JSON.parse(xhr.responseText);
-                    console.log("Message Sent");
-                    $('#chat-input').val("")
+                    console.log(response)
+                    $('#chat-input').val('');
                 } else {
                     console.log('An error occurred');
                 }
