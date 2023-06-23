@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="overflow-y-scroll scrollbar-hidden px-5 pt-5 flex-1" id="chat-area"
-                    style="max-height: calc(100vh - 300px);">
+                    style="min-height: calc(100vh - 300px); max-height: calc(100vh - 300px);">
                     @forelse ($messages as $message)
                         {!! $message->view !!}
                         <div class="clear-both"></div>
@@ -45,7 +45,7 @@
 
 @section('sencondary_body')
     @cannot('chat-access')
-        <div class="mt-5">
+        <div class="mt-5 col-span-12 text-center md:text-left">
             <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#button-modal-preview"
                 class="btn btn-primary w-max">Akhiri Sesi</a>
         </div>
@@ -118,7 +118,7 @@
                     $('#chat-area').append(parsedResult.data.sender == "{{ $iam->code }}" ?
                         parsedResult.view['sender'] : parsedResult.view['receiver'])
                     $('#chat-area').append(`<div class="clear-both"></div>`);
-                    scrollToBottom();
+                    scrollToBottom("chat-area");
                 },
                 function() {},
                 function(error) {
@@ -183,45 +183,5 @@
                 event.preventDefault();
             }
         });
-
-        function ajaxWrapper(url, method, data, successCallback, beforeSendCallback, errorCallback) {
-            // Inisialisasi objek XMLHttpRequest
-            var xhr = new XMLHttpRequest();
-
-            // Atur callback untuk menerima respon dari server
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
-                        successCallback(xhr.responseText);
-                    } else {
-                        errorCallback(xhr.statusText);
-                    }
-                }
-            };
-
-            // Buat request dengan method yang ditentukan
-            xhr.open(method, url, true);
-
-            // Set header untuk request
-            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-            xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-
-            // Jalankan fungsi beforeSendCallback
-            if (beforeSendCallback) {
-                xhr.beforeSend = beforeSendCallback();
-            }
-
-            // Kirim data dengan method POST
-            if (method.toLowerCase() === 'post') {
-                xhr.send(JSON.stringify(data));
-            } else {
-                xhr.send();
-            }
-        }
-
-        function scrollToBottom() {
-            var chatArea = document.getElementById('chat-area');
-            chatArea.scrollTop = chatArea.scrollHeight;
-        }
     </script>
 @endsection

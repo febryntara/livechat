@@ -56,3 +56,8 @@ function ajaxWrapper(
         xhr.send();
     }
 }
+
+function scrollToBottom(element_id) {
+    var chatArea = document.getElementById(element_id);
+    chatArea.scrollTop = chatArea.scrollHeight;
+}
