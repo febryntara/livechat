@@ -47,7 +47,7 @@ class ChatController extends Controller
             'alias'        => $data['alias'] ?? NULL
         ], $room->customer->token_10, $room->department->token_16);
 
-        MessageCreated::dispatch($secureMessage->chipertext, $data['room_code'], $data['customer_code'], $data['cs_code'], $data['sender'], $data['type'], $data['alias']);
+        MessageCreated::dispatch($secureMessage->chipertext, $data['room_code'], $data['customer_code'], $data['cs_code'], $data['sender'], $data['type'], $data['alias'] ?? NULL);
         return response()->json(['status' => 200, 'data' => $data]);
     }
 

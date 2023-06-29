@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('cs_code');
             $table->string('sender');
             $table->enum('type', ['text', 'file', 'image']);
-            $table->string('alias')->nullable();
+            $table->string('alias')->nullable()->default('NULL');
             $table->timestamps();
         });
     }
