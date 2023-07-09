@@ -13,7 +13,8 @@ class DepartmentController extends Controller
         $data = [
             'title' => "Data Department",
             'use_search' => true,
-            'departments' => Department::search($request->get('keyword'))->paginate(10)->withQueryString()
+            'departments' => Department::search($request->get('keyword'))->paginate(10)->withQueryString(),
+            'number' => $request->has('page') ? ($request->get('page') != 1 ? ($request->get('page') - 1) * 10 + 1 : 1) : 1
         ];
 
         return view('pages.crud.department.index', $data);

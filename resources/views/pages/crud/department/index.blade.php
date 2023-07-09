@@ -31,7 +31,7 @@
                     @foreach ($departments as $department)
                         <tr class="intro-x">
                             <td class="w-40">
-                                {{ $loop->iteration }}
+                                {{ $number++ }}
                             </td>
                             <td>
                                 <a href="{{ route('department.detail', ['department' => $department]) }}"

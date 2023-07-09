@@ -13,7 +13,8 @@ class CustomerController extends Controller
             'title' => "Mahasiswa Jurusan " . $jurusan,
             'use_search' => true,
             'customers' => Customer::jurusan($jurusan)->search($request->get('keyword'))->paginate(10)->withQueryString(),
-            'department' => auth()->user()->department
+            'department' => auth()->user()->department,
+            'number' => $request->has('page') ? ($request->get('page') != 1 ? ($request->get('page') - 1) * 10 + 1 : 1) : 1
         ];
 
         return view('pages.crud.customer.index', $data);

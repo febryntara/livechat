@@ -23,7 +23,7 @@
                     @forelse ($customers as $item)
                         <tr class="intro-x">
                             <td class="w-40">
-                                {{ $loop->iteration }}
+                                {{ $number++ }}
                             </td>
                             <td>
                                 <a href="{{ route('customer.detail', ['customer' => $item]) }}"

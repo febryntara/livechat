@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->create();
 
         \App\Models\User::factory()->create([
             'name' => 'administrator',
@@ -28,14 +28,14 @@ class DatabaseSeeder extends Seeder
             Department::factory()->create();
         }
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $y = $i + 1;
             \App\Models\User::factory()->create([
                 'name' => 'admin',
-                'email' => "cs$y@admin.com",
+                'email' => "cs" . ($y + 10) . "@admin.com",
                 'password' => Hash::make("pnblivechat"),
                 'role' => 'cs',
-                'department_id' => $y
+                'department_id' => mt_rand(1, 5)
             ]);
         }
     }
