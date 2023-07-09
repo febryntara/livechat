@@ -43,6 +43,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    //local scope
+    public function scopeRole($query, $role)
+    {
+        $query->where('role', $role);
+    }
+    public function scopeSearch($query, $keyword)
+    {
+        $query->where('name', 'like', "%$keyword%")->orWhere('email', 'like', "%$keyword%")->orWhereHas('department', function ($query) use ($keyword) {
+            $query->where('name', 'like', "%$keyword%");
+        });
+    }
+
     // relations
     public function department()
     {

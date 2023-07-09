@@ -8,11 +8,12 @@ use Illuminate\Support\Facades\Validator;
 
 class DepartmentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $data = [
             'title' => "Data Department",
-            'departments' => Department::paginate(10)->withQueryString()
+            'use_search' => true,
+            'departments' => Department::search($request->get('keyword'))->paginate(10)->withQueryString()
         ];
 
         return view('pages.crud.department.index', $data);

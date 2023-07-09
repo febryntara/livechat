@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, $jurusan)
     {
         $data = [
-            'title' => "Mahasiswa Jurusan " . $request->jurusan,
-            'customers' => Customer::where('jurusan', $request->jurusan)->paginate(10)->withQueryString(),
+            'title' => "Mahasiswa Jurusan " . $jurusan,
+            'use_search' => true,
+            'customers' => Customer::jurusan($jurusan)->search($request->get('keyword'))->paginate(10)->withQueryString(),
             'department' => auth()->user()->department
         ];
 

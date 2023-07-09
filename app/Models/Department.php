@@ -29,6 +29,12 @@ class Department extends Model
         return $this->hasMany(RoomChat::class, 'department_code', 'code');
     }
 
+    // local scope
+    public function scopeSearch($query, $keyword)
+    {
+        $query->where('name', 'like', "%$keyword%");
+    }
+
     // events
     public static function boot()
     {

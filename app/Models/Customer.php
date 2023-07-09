@@ -49,6 +49,17 @@ class Customer extends Model
         return $customer;
     }
 
+    // local scope
+    public function scopeSearch($query, $keyword)
+    {
+        $query->where('name', 'like', "%$keyword%")->orWhere('nim', 'like', "$keyword");
+    }
+
+    public function scopeJurusan($query, $jurusan)
+    {
+        $query->where('jurusan', $jurusan);
+    }
+
     // relations
     public function rooms()
     {

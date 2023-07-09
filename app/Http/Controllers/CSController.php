@@ -17,11 +17,12 @@ class CSController extends Controller
         'department_id' => 'nullable|numeric'
     ];
 
-    public function index()
+    public function index(Request $request)
     {
         $data = [
             'title' => 'Daftar Customer Service',
-            'cs' => User::where('role', 'cs')->get()
+            'use_search' => true,
+            'cs' => User::role('cs')->search($request->get('keyword'))->paginate(10)->withQueryString()
         ];
 
         return view('pages.crud.customer_service.index', $data);

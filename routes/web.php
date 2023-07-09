@@ -85,6 +85,6 @@ Route::controller(CSController::class)->group(function () {
 });
 
 Route::controller(CustomerController::class)->group(function () {
-    Route::get('/customer', 'index')->name('customer.index')->middleware('auth');
+    Route::get('/customer/{jurusan}', 'index')->name('customer.index')->middleware('auth');
     Route::get('/customer/detail/{customer:code}', 'detail')->name('customer.detail')->middleware('auth');
 });
