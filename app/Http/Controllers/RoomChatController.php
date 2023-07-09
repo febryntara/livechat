@@ -82,13 +82,14 @@ class RoomChatController extends Controller
 
         return view('pages.chat.chat_stack', $data);
     }
-    public function chatEnded()
+    public function chatEnded(Request $request)
     {
         $department = auth()->user()->department;
         $data = [
             'title' => 'Chat Stack',
             'department' => $department,
-            'rooms' => $department->rooms()->where('status', 'ended')->get()
+            'rooms' => $department->rooms()->where('status', 'ended')->paginate(10)->withQueryString(),
+            'number' => $request->has('page') ? ($request->get('page') != 1 ? ($request->get('page') - 1) * 10 + 1 : 1) : 1
         ];
 
         return view('pages.chat.chat_list', $data);

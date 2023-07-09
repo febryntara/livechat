@@ -56,7 +56,8 @@ class CSController extends Controller
     {
         $data = [
             'title' => "Detail CS| $user->name",
-            'cs' => $user
+            'cs' => $user,
+            'departments' => Department::all()
         ];
 
         return view('pages.crud.customer_service.detail', $data);
