@@ -8,8 +8,10 @@ use App\Http\Controllers\RoomChatController;
 use App\Http\Controllers\UserController;
 use App\Mail\RequestService;
 use App\Models\Customer;
+use App\Models\Department;
 use App\Models\Message;
 use App\Models\MessageEncryption;
+use App\Models\Rating;
 use App\Models\RoomChat;
 use App\Models\StringComparison;
 use Illuminate\Http\Request;
@@ -27,10 +29,34 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $role_as = auth()->user()->role;
+    $department = auth()->user()->department;
+    $done_customers = $role_as == 'admin' ? Customer::all() : $department->rooms->where('status', 'ended')->map(function ($data) {
+        return $data->customer;
+    })->unique('code');
+    $still_customers = $role_as == 'admin' ? Customer::all() : $department->rooms->where('status', 'active')->map(function ($data) {
+        return $data->customer;
+    })->unique('code');
+    $customers = $role_as == 'admin' ? Customer::latest()->get() : $department->rooms->map(function ($data) {
+        return $data->customer;
+    })->unique('code')->sortByDesc('last_visit');
+    $ratings = $role_as == 'admin' ? Rating::latest()->get() : Rating::department($department->code)->get();
+    $rating = $ratings->sum('stars') / $ratings->count();
+    $messages = $role_as == 'admin' ? collect([]) : Message::whereIn('room_code', $department->rooms->map(fn ($item) => $item->code))->whereNotIn('sender', $department->cs->map(fn ($item) => $item->code))->get();
+
     $data = [
-        'department' => auth()->user()->department,
+        'done_customers' => $done_customers,
+        'still_customers' => $still_customers,
+        'customers' => $customers,
+        'department' => $department,
+        'departments' => Department::latest()->get(),
+        'ratings' => $ratings,
+        'rating' => $rating,
+        'messages' => $messages
     ];
-    return view('layouts.admin', $data);
+
+    // return dd($data);
+    return view('pages.dashboard.index', $data);
 })->name('dashboard')->middleware('auth');
 
 Route::get('test', function (Request $request) {
