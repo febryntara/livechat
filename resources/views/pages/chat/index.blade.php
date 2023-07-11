@@ -116,6 +116,10 @@
 
 @section('script')
     <script>
+        window.Echo.channel("quit.{{ $room->code }}").listen("QuitRoom", (event) => {
+            location.reload();
+        });
+
         window.Echo.channel("messages.{{ $room->code }}").listen("MessageCreated", (event) => {
             ajaxWrapper('/api/get-message', 'post', event, function(result) {
                     let parsedResult = JSON.parse(result);

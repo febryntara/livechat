@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\QuitRoom;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
@@ -36,6 +37,7 @@ class RoomChat extends Model
     {
         $this->status = "ended";
         $this->save();
+        QuitRoom::dispatch($this);
         return $this;
     }
 
