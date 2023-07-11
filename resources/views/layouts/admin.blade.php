@@ -1,6 +1,6 @@
 @extends('layouts.base')
 @section('base_head')
-    <title>Dashboard - Enigma - Tailwind HTML Admin Template</title>
+    <title>{{ $title ?? 'PNB LIVE CHAT' }}</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{ asset('dist/css/app.css') }}" />
     <link rel="stylesheet" href="{{ asset('dist/css/my.css') }}" />
