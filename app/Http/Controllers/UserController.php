@@ -43,7 +43,7 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->withInput()->withErrors($validator)->with('error', "email atau Password Salah!");
+            return redirect()->back()->withInput()->withErrors($validator)->with('error', "Gagal Memvalidasi Email & Password!");
         }
 
         $validated = $validator->validate();

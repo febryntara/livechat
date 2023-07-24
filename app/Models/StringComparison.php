@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+// metode cosine simmilarity
 class StringComparison extends Model
 {
     public static function calculate($str1, $str2)

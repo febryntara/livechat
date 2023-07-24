@@ -47,7 +47,7 @@ class DepartmentController extends Controller
             return redirect()->route('department.all')->with('success', sprintf("Department %s Berhasil Ditambah", $is_created->name));
         }
 
-        return redirect()->back()->withInput()->with('error', 'Terjadi Kesalahan!<br>Silahkan Coba Lagi!');
+        return redirect()->back()->withInput()->with('error', 'Gagal Menambah Department!<br>Silahkan Coba Lagi!');
     }
 
     public function update(Department $department)
@@ -74,10 +74,10 @@ class DepartmentController extends Controller
 
         $is_updated = $department->update($validator->validate());
         if ($is_updated) {
-            return redirect()->route('department.detail', ['department' => $department])->with('success', sprintf("Departement %s Berhasil Diupdate!", $department->name));
+            return redirect()->route('department.all')->with('success', sprintf("Departement %s Berhasil Diupdate!", $department->name));
         }
 
-        return redirect()->back()->withInput()->with(sprintf("Department %s Gagal Diupdate!", $department->name));
+        return redirect()->back()->withInput()->with('error', sprintf("Department %s Gagal Diupdate!", $department->name));
     }
 
     public function detail(Department $department)

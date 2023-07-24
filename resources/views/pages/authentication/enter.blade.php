@@ -82,7 +82,7 @@
                             class="btn btn-primary text-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Minta
                             Layanan</button>
                         <a href="{{ route('auth.signin') }}"
-                            class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Login CS</a>
+                            class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Login Admin</a>
                     </div>
                 </div>
             </form>

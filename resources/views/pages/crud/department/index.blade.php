@@ -21,7 +21,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($departments as $department)
+                    @forelse ($departments as $department)
                         <tr class="intro-x">
                             <td class="w-40">
                                 {{ $number++ }}
@@ -50,7 +50,11 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td class="text-center" colspan="5">Tidak Ada Data</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

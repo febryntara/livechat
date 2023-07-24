@@ -3,8 +3,13 @@
     <!-- BEGIN: Post Content -->
     <form action="{{ route('department.store') }}" method="POST" class="intro-y col-span-12 lg:col-span-8">
         @csrf
-        <input type="text" class="intro-y form-control py-3 px-4 box pr-10 mt-3" name="name"
-            placeholder="Nama Department">
+        <div class="mt-3">
+            @error('name')
+                <span class="text-danger text-sm">{{ $message }}</span>
+            @enderror
+            <input type="text" class="intro-y form-control py-3 px-4 box pr-10" name="name" value="{{ old('name') }}"
+                placeholder="Nama Department">
+        </div>
         <div class="post intro-y overflow-hidden box mt-5">
             <div class="post__content tab-content">
                 <div id="content" class="tab-pane p-5 active" role="tabpanel" aria-labelledby="content-tab">
@@ -15,9 +20,14 @@
                         </div>
                         <div class="mt-5">
                             <div>
-                                <label for="post-form-7" class="form-label">Nama Gedung</label>
+                                <label for="post-form-7" class="form-label flex justify-between">
+                                    <span>Nama Gedung</span>
+                                    @error('location')
+                                        <span class="text-danger text-sm">{{ $message }}</span>
+                                    @enderror
+                                </label>
                                 <input id="post-form-7" type="text" name="location" class="form-control"
-                                    placeholder="Misal: Gedung EA">
+                                    placeholder="Misal: Gedung EA" value="{{ old('location') }}">
                             </div>
                         </div>
                     </div>
@@ -28,7 +38,12 @@
                         </div>
                         <div class="mt-5">
                             <div>
-                                <label for="post-form-7" class="form-label">Status</label>
+                                <label for="post-form-7" class="form-label flex justify-between">
+                                    <span>Status</span>
+                                    @error('status')
+                                        <span class="text-danger text-sm">{{ $message }}</span>
+                                    @enderror
+                                </label>
                                 <input id="post-form-7" type="text" name="status" class="form-control"
                                     value="availlable" readonly>
                             </div>
