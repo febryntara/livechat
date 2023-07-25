@@ -21,7 +21,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($cs as $item)
+                    @forelse ($cs as $item)
                         <tr class="intro-x">
                             <td class="w-40">
                                 {{ $number++ }}
@@ -48,7 +48,11 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td class="text-center" colspan="5">Tidak Ada Data</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

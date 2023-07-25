@@ -42,8 +42,14 @@ class CSController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), $this->rules);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Terjadi Kesalahan Pada Input!');
+        }
+
         $validated = $validator->validate();
         $validated['password'] = Hash::make($validated['password']);
+
         $is_created = User::create($validated);
         if ($is_created) {
             return redirect()->route('cs.all')->with('success', "CS Baru Berhasil Ditambahkan!");
@@ -78,6 +84,11 @@ class CSController extends Controller
     {
         $this->rules['password'] = "nullable|string|min:8";
         $validator = Validator::make($request->all(), $this->rules);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Terjadi Kesalahan Pada Input!');
+        }
+
         $validated = $validator->validate();
         if ($request->has('password')) {
             $validated['password'] = Hash::make($validated['password']);
@@ -85,13 +96,9 @@ class CSController extends Controller
             unset($validated['password']);
         }
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput()->with('error', "Terjadi Kesalahan Pada Input!");
-        }
-
         $is_updated = $user->update($validated);
         if ($is_updated) {
-            return redirect()->route('cs.detail', ['user' => $user])->with('success', "CS $user->name Berhasil Di Update!");
+            return redirect()->back()->with('success', "CS $user->name Berhasil Di Update!");
         }
         return redirect()->back()->withInput()->with('error', "CS $user->name Gagal Di Update!<br>Coba Lagi!");
     }
