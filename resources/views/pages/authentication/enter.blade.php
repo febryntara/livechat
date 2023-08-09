@@ -60,9 +60,16 @@
                         <select class="form-select form-select-lg mt-4 sm:mt-2 sm:mr-2" name="jurusan"
                             aria-label=".form-select-lg example">
                             <option class="capitalize" value="">Jurusan</option>
-                            @foreach (json_decode(env('APP_JURUSAN')) as $item)
+                            <option class="capitalize" value="teknik_elektro">Teknik Elektro</option>
+                            <option class="capitalize" value="teknik_mesin">Teknik Mesin</option>
+                            <option class="capitalize" value="teknik_sipil">Teknik Sipil</option>
+                            <option class="capitalize" value="pariwisata">Pariwisata</option>
+                            <option class="capitalize" value="akuntansi">Akuntansi</option>
+                            <option class="capitalize" value="administrasi_niaga">Administrasi Niaga</option>
+                            <option class="capitalize" value="umum">Umum</option>
+                            {{-- @foreach (json_decode(env('APP_JURUSAN')) as $item)
                                 <option class="capitalize" value="{{ $item->code }}">{{ $item->name }}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                         @error('department')
                             <p class="text-danger">{{ $message }}</p>

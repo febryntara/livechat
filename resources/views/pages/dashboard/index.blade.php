@@ -38,7 +38,7 @@
                             <i data-lucide="star" class="report-box__icon text-pending"></i>
                         </div>
                         <div class="text-3xl font-medium leading-8 mt-6 flex">
-                            <span>{{ $rating }}</span>
+                            <span>{{ number_format($rating, 2) }}</span>
                         </div>
                         <div class="text-base text-slate-500 mt-1">Index Penilaian</div>
                     </div>
