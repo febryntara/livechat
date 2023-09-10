@@ -93,7 +93,7 @@ class UserController extends Controller
     {
         $data = [
             'title' => 'Live Chat | Minta Layanan',
-            'departments' => Department::get(),
+            'departments' => Department::where('status', 'availlable')->get(),
 
         ];
 
